@@ -1,0 +1,116 @@
+
+/* BASIC ARCHITECTURE STYLE */
+
+.container{
+  display: grid;
+  margin: auto;
+  padding: 10px;
+  margin-top: 10px;
+  height: 600px;
+  width: 90%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #4885ed;
+  border-radius: 25px;
+
+}
+
+.column {
+/*  padding: 10px;
+    border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  border-radius: 5px;*/
+  text-align: center;
+}
+
+.row {
+/*  padding:10px;
+    border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  border-radius: 5px;*/
+    text-align: center;
+}
+
+#imgStyle {
+  text-align: center;
+  width: 50%;
+}
+
+#imgStyle2 {
+  text-align: center;
+  width: 90%;
+}
+
+#fontStyle {
+  font-family: 'Alfa Slab One', cursive;
+  font-size: 32px;
+  color: #4885ed;
+  opacity: 0.95;
+
+}
+
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+    color: #4885ed;
+}
+
+
+/* ANIMATION */
+
+@keyframes logoFadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes logoFadeIn2 {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.first-fade {
+  opacity: 0;
+  animation-name: logoFadeIn;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+.second-fade {
+  opacity: 0;
+  animation-name: logoFadeIn2;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-delay: 1s;
+}
+
+.button {
+    background-color: #4885ed;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 25px;
+    padding: 10px 40px;
+}
