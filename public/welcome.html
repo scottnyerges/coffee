@@ -6,8 +6,9 @@
 		<!-- VIEWPORT -->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- BOOTSTRAP -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+		<!-- JQUERY -->
 		<!-- AJAX -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<!-- CSS -->
@@ -21,21 +22,32 @@
 			<div class="container">
 			<div class="row" id="fontStyle"><h1>Welcome Back!</h1></div>
 			<div class="row">
-				<form>
-  				Name:<br>
-  				<input type="text" name="name"><br>
-  				Last name:<br>
-  				<input type="text" name="lastname"><br>
-			</form>
+				<!-- THIS IS A SUBMISSION FORM FOR REGISTERED USERS TO LOGIN -->
+
+				<form id="myForm" action="/action_page.php">
+  				Name: <input type="text" name="userName"><br>
+  				Password <input type="text" name="userPass"><br>
+  				<br>
+  				
+  				<!-- BUTTON TO TRIGGER LOGIN AND ADVANCE TO LOCATION PAGE -->
+  				<input type="button" onclick="myFunction()" value="LOG IN!">
+				</form>
+
 			</div>
-			<!-- GET REQUEST TO CHECK USER DB -->
-			<div class="row"></div><div class="row"></div>
+			<!-- WILL NEED GET REQUEST TO CHECK USER DB -->
+			<div class="row"></div>
+			<div class="row"></div>
 			<div class="row">
-			<a href="location.html" class="btn btn-default">Log In!</a>
+			<!-- BUTTON TO TRIGGER LOGIN AND ADVANCE TO LOCATION PAGE -->
+			<!-- <a href="location.html" class="btn btn-default">Log In!</a> -->
 		</div>
 
-
-
+	<!-- TEMP SCRIPT FOR SUBMISSION FORM -->
+	<script>
+		function myFunction() {
+	    document.getElementById("myForm").submit();
+		}
+	</script>
 
 		</div>
 	</body>
