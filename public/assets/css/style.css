@@ -12,25 +12,36 @@
   border-style: solid;
   border-color: #4885ed;
   border-radius: 25px;
-
 }
 
 .column {
-/*  padding: 10px;
-    border-width: 1px;
-  border-style: solid;
-  border-color: black;
-  border-radius: 5px;*/
   text-align: center;
 }
 
 .row {
-/*  padding:10px;
-    border-width: 1px;
-  border-style: solid;
-  border-color: black;
-  border-radius: 5px;*/
     text-align: center;
+}
+
+.button {
+    background-color: #4885ed;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 25px;
+    padding: 10px 40px;
+    font-family: 'Oswald', sans-serif;
+
+}
+
+form {
+    font-family: 'Oswald', sans-serif;
+
+
 }
 
 #imgStyle {
@@ -43,12 +54,25 @@
   width: 90%;
 }
 
-#fontStyle {
+#logoStyle {
   font-family: 'Alfa Slab One', cursive;
-  font-size: 32px;
+  font-size: 36px;
   color: #4885ed;
   opacity: 0.95;
+}
 
+#fontStyle {
+  font-family: 'Alfa Slab One', cursive;
+  font-size: 28px;
+  color: #4885ed;
+  opacity: 0.95;
+}
+
+#fontStyle2 {
+  font-family: 'Alfa Slab One', cursive;
+  font-size: 20px;
+  color: #4885ed;
+  opacity: 0.95;
 }
 
 
@@ -82,30 +106,18 @@
 .first-fade {
   opacity: 0;
   animation-name: logoFadeIn;
-  animation-duration: 2s;
+  animation-duration: 2.0s;
   animation-fill-mode: forwards;
 }
 
 .second-fade {
   opacity: 0;
   animation-name: logoFadeIn2;
-  animation-duration: 1s;
+  animation-duration: 2.0s;
   animation-fill-mode: forwards;
-  animation-delay: 1s;
-}
+/*  animation-delay: 0.5s;
+*/}
 
-.button {
-    background-color: #4885ed;
-    border: none;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 25px;
-    padding: 10px 40px;
-}
+
 
 

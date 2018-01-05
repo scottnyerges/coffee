@@ -20,19 +20,26 @@
 	</head>
 	<body>
 			<div class="container">
-			<div class="row"><h1>Where are you?</h1></div>
+			<div class="row" id="fontStyle">Where are you?</div>
 			<div class="row">
-			<a href="results.html" class="btn btn-default">Use my home address</a>
+			<!-- THIS WILL QUERY THE DB TO USE THE LOCATION ON FILE -->
+			<a href="results.html" class="button btn-default">Use my home address</a>
 			</div>
+			<!-- THIS WILL ACCESS THE USER'S CURRENT LOCATION -->
 			<div class="row">
-			<a href="results.html" class="btn btn-default">Use my current location</a>
+			<a href="results.html" class="button btn-default">Use my current location</a>
 			</div>
-			<div class="row">
-			one-line form goes here for new location
-			<!-- GET REQUEST FOR LOCATION -->
-			<br>
-			<br>
-			<a href="results.html" class="btn btn-default">Use this location</a>
+			<!-- THIS WILL USE NEW ADDRESS FOR LOCATION -->
+			<div class="row" >
+				<form id="myForm" action="/action_page.php">
+  				Address: <input type="text" id="newLocation"><br>
+  				<br>
+  				<!-- BUTTON TO TRIGGER LOGIN AND ADVANCE TO LOCATION PAGE... -->
+				<!-- THIS CODE *MAY* NEED TO BE CHANGED. BUTTON MUST LAUNCH LOG-IN PROCESS (see location.js)-->
+				<a type="submit" class="button btn-default">Use this location</a>
+				</form>
+
+
 			</div>
 	</body>
 	</html>	
