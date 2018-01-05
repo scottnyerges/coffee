@@ -1,12 +1,47 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>register</title>
-</head>
-<body>
-	<h1>
-		register.html
-	</h1>
 
-</body>
-</html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>coffee connect</title>
+		<!-- VIEWPORT -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- BOOTSTRAP -->
+		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+		<!-- AJAX -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<!-- CSS -->
+		<link rel="stylesheet" href="./assets/css/style.css" type="text/css"/>
+		<!-- GOOGLE FONT -->
+		<link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
+		<!-- GOOGLE MAPS THINGY -->
+
+	</head>
+	<body>
+			<div class="container">
+			<div class="row"><h1>Nice to meet you!</h1></div>
+			<div class="row">
+				<!-- THIS IS REGISTRATION FORM FOR NEW USERS -->
+				<form>
+  				Name:<br>
+  				<input type="text" name="newUserName"><br>
+  				Password:<br>
+  				<input type="text" name="newUserPass"><br>
+				Address:<br>
+				<input type="text" name="newUserAddress"><br>
+				<br>
+				<!-- NEED GET REQUEST TO MAKE SURE USER INFO ISN'T TAKEN -->
+				<br>
+				</form>
+				<!-- THIS IS A BUTTON TO SUBMIT THE NEW USER'S REGISTRATION AND ADVANCE TO LOCATION PAGE-->
+				<a href="location.html" class="btn btn-default">Register</a>
+				<!-- IF THE USERNAME OR PASSWORD IS ALREADY TAKEN, USER WILL BE PROMPTED TO TRY AGAIN. -->
+				<!-- NEED GET REQUEST TO CHECK SQL DATABASE -->
+			</div>
+			
+			
+
+	</body>
+	</html>	
+
