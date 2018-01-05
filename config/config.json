@@ -3,7 +3,7 @@
     "username": "root",
     "password": "root",
     "port": 8889,
-    "database": "groupProject",
+    "database": "users_db",
     "host": "localhost",
     "dialect": "mysql"
   },
