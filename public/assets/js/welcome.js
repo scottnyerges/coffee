@@ -1,10 +1,19 @@
 $(document).ready(function() {
-	var usernameInput = $("#client-username").val().trim();
-	var passwordInput = $("#client-password").val().trim();
+	var usernameInput;
+	var passwordInput;
 	var currentUsernames = [];
 	var currentPasswords = [];
 
-	$(document).on("submit", "#sign-in", handleSignIn);
+	$(document).on("submit", "#myForm", handleSignIn);
+
+	function handleSignIn(event) {
+		event.preventDefault();
+
+		usernameInput = $("#userName").val().trim();
+		passwordInput = $("#userPass").val().trim();
+
+		getUsers();
+	}
 
 	function getUsers() {
 		$.get("api/users", function(data) {
@@ -12,27 +21,22 @@ $(document).ready(function() {
 				currentUsernames.push(data[i].username);
 				currentPasswords.push(data[i].password);
 			}
+
+			if (!usernameInput || !passwordInput) {
+				console.log("tell user to fill in all fields");
+				return;
+			}
+			else if (currentUsernames.indexOf(usernameInput) == -1) {
+				console.log("tell user that their username doesnt exist");
+				return;
+			}
+			else if (passwordInput != currentPasswords[currentUsernames.indexOf(usernameInput)]) {
+				console.log("tell the user the passwords dont match");
+				return;
+			}
+			console.log("Credentials worked");
+
+			window.location.href = "/location/" + (currentUsernames.indexOf(usernameInput) + 1);
 		})
 	}
-
-	function handleSignIn(event) {
-		event.preventDefault();
-
-		getUsers();
-
-		if (!usernameInput || !passwordInput) {
-			// tell user to fill in all fields
-			return;
-		}
-		else if (currentUsernames.indexOf(usernameInput) == -1) {
-			// tell user that their username doesnt exist
-			return;
-		}
-		else if (passwordInput != currentPasswords[currentUsernames.indexOf(usernameInput)]) {
-			// tell the user the passwords dont match
-			return;
-		}
-	}
-
-	// somehow save the user ID of the person
-}
+})

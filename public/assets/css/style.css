@@ -114,3 +114,11 @@ a.button {
     border-radius: 25px;
     padding: 10px 40px;
 }
+
+#map {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 70%;
+  min-height: 300px;
+}
