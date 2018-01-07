@@ -51,13 +51,6 @@
 
 }
 
-a.button {
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: button;
-    text-decoration: none;
-    color: #4885ed;
-}
 
 
 /* ANIMATION */
