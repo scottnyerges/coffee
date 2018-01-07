@@ -8,7 +8,7 @@ $(document).ready(function() {
 	$(document).on("click", "#logoff", goOffline);
 
 	$.get("../api/users/" + index, function(data) {
-		userAddress = data.homeAddress;
+		userAddress = data.activeLocation;
 		console.log("this users address is " + userAddress);
 		geocoder.geocode({ "address": userAddress}, function(results, status) {
 			if (status == "OK") {
