@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
@@ -8,39 +7,34 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- BOOTSTRAP -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<!-- AJAX -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<!-- CSS -->
-		<link rel="stylesheet" href="./assets/css/style.css" type="text/css"/>
+		<link rel="stylesheet" href="../assets/css/style.css" type="text/css"/>
 		<!-- GOOGLE FONT -->
 		<link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
-		<!-- GOOGLE MAPS THINGY -->
-
 	</head>
 	<body>
 		<div class="container">
 			<div class="row" id="fontStyle">let's get coffee!</div>
-			<div class="row" id="map">results window
-				<!-- ID *should* suck in results from google map -->
-				<!-- <img src="./assets/images/dummymap.png" id="imgStyle2"> -->
-			</div>	
-
-			<div class="row" id="usersOnline">users online window
-				<!-- ID will suck in results from DB -->
-				<!-- <img src="./assets/images/online.png"> -->
+			<div class="row"><br>
+				<div id="map"></div>
 			</div>
-
+			<div class="row" id="users-online">
+			</div>
+			<div id="chat">
+				<div id="chat-messages"></div>
+				<div id="chat-bar">
+					<input id="chat-input" />
+					<button id="chat-send">Send</button>
+				</div>
+			</div>
 			<div class="row">
-			<a href="index.html" class="button btn-default">Log off</a>
+				<button id="logoff" class="btn btn-default">Log off</button>
 			</div>
-
-	</div>
-		<!-- JAVASCRIPT LINK GOES HERE -->
-		<!-- JQUERY LINKS GOES HERE -->
-		<!-- AJAX --><!-- 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-		<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbnqdrc-v_3ZxMG8fQS_53DnUUHUOSquc&libraries=places"></script> -->
+		</div>
+		<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbnqdrc-v_3ZxMG8fQS_53DnUUHUOSquc&libraries=places"></script>
+		<script async defer src="../assets/js/results.js" type="text/javascript"></script>
 	</body>
-	</html>	
-
+</html>

@@ -118,6 +118,54 @@ form {
 /*  animation-delay: 0.5s;
 */}
 
+.button {
+    background-color: #4885ed;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 25px;
+    padding: 10px 40px;
+}
+
+#map {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 70%;
+  min-height: 300px;
+}
 
 
+#chat {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  width: 70%;
+}
 
+#chat-messages {
+  height: 150px;
+  overflow: auto;
+  background-color: #fffcf7;
+}
+
+#chat-bar {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 70%;
+}
+
+.player1 {
+  color: #419d78;
+}
+
+.player0 {
+  color: #000;
+  background-color: #d3d3d3;
+}

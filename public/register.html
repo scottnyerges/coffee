@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
@@ -7,42 +6,52 @@
 		<!-- VIEWPORT -->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- BOOTSTRAP -->
-		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<!-- AJAX -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<!-- CSS -->
 		<link rel="stylesheet" href="./assets/css/style.css" type="text/css"/>
 		<!-- GOOGLE FONT -->
 		<link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
-		<!-- GOOGLE MAPS THINGY -->
-
 	</head>
 	<body>
-			<div class="container">
+		<div class="container">
 			<div class="row" id="fontStyle">Nice to meet you!</div>
 			<div class="row" id="fontStyle2">Please create an account</div>
 			<div class="row">
 				<!-- THIS IS REGISTRATION FORM FOR NEW USERS -->
-				<form>
-  				Name:<br>
-  				<input type="text" name="newUserName"><br>
-  				Password:<br>
-  				<input type="text" name="newUserPass"><br>
-				Address:<br>
-				<input type="text" name="newUserAddress"><br>
-				<br>
-				<!-- JAMES/NANCY: NEED GET REQUEST TO MAKE SURE USER INFO ISN'T TAKEN -->
-				<br>
+				<form id="new-user-form">
+					Name:<br>
+					<input type="text" id="newUserName"><br>
+					Password:<br>
+					<input type="text" id="newUserPass"><br>
+					Address:<br>
+					<input type="text" id="newUserAddress"><br>
+					<button type="submit" class="btn btn-default">Register</button>
+					<br>
+					<br>
 				</form>
-				<!-- NANCY/JAMES: CODE HERE WILL NEED TO BE CHANGED TO RESEMBLE BUTTON ON WELCOME PAGE-->
-				<a href="location.html" class="button">Register</a>
-				<!-- NANCY: NEED CODE SO THAT IF THE USERNAME OR PASSWORD IS ALREADY TAKEN, USER WILL BE PROMPTED TO TRY AGAIN. -->
-				<!-- NEED GET REQUEST TO CHECK SQL DATABASE -->
 			</div>
-			
-			
 
+			<div id="message-modal" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h2 class="modal-title">Error</h2>
+						</div>
+						<div class="modal-body">
+							<h4 id="error-text"></h4>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="assets/js/register.js" type="text/javascript"></script>
 	</body>
-	</html>	
-
+</html>

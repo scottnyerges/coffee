@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
@@ -8,39 +7,35 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- BOOTSTRAP -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<!-- AJAX -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<!-- CSS -->
-		<link rel="stylesheet" href="./assets/css/style.css" type="text/css"/>
+		<link rel="stylesheet" href="../assets/css/style.css" type="text/css"/>
 		<!-- GOOGLE FONT -->
 		<link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
 		<!-- GOOGLE MAPS THINGY -->
-
 	</head>
 	<body>
-			<div class="container">
-			<div class="row" id="fontStyle">Where are you?</div>
+		<div class="container">
+			<div class="row"><h1>Where are you?</h1></div>
 			<div class="row">
-			<!-- THIS WILL QUERY THE DB TO USE THE LOCATION ON FILE -->
-			<a href="results.html" class="button btn-default">Use my home address</a>
+				<a id="home-address" class="btn btn-default">Use my home address</a>
 			</div>
 			<!-- THIS WILL ACCESS THE USER'S CURRENT LOCATION -->
 			<div class="row">
-			<a href="results.html" class="button btn-default">Use my current location</a>
+				<a id="current-address" class="btn btn-default">Use my current location</a>
+				<br>(Location Accuracy may vary)
 			</div>
-			<!-- THIS WILL USE NEW ADDRESS FOR LOCATION -->
-			<div class="row" >
-				<form id="myForm" action="/action_page.php">
-  				Address: <input type="text" id="newLocation"><br>
-  				<br>
-  				<!-- BUTTON TO TRIGGER LOGIN AND ADVANCE TO LOCATION PAGE... -->
-				<!-- THIS CODE *MAY* NEED TO BE CHANGED. BUTTON MUST LAUNCH LOG-IN PROCESS (see location.js)-->
-				<a type="submit" class="button btn-default">Use this location</a>
-				</form>
-
-
+			<div class="row">
+				Custom Location<br>
+				<input placeholder="Enter an address" id="custom-input" type="text" />
+				<br>
+				<br>
+				<a id="custom-address" class="btn btn-default">Use this location</a>
 			</div>
+		</div>
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbnqdrc-v_3ZxMG8fQS_53DnUUHUOSquc&libraries=places"></script>
+		<script async defer src="../assets/js/location.js" type="text/javascript"></script>
 	</body>
-	</html>	
-
+</html>

@@ -21,7 +21,11 @@ module.exports = function(sequelize, DataTypes) {
         len: [1]
       }
     },
-    online: DataTypes.BOOLEAN
+    online: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
+    activeLocation: DataTypes.STRING
   });
 
   return Users;
