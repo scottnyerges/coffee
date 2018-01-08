@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	var groupAddresses = [];
 	var userAddress;
+	var username;
 
 	var url = window.location.href;
 	var index = url.split("results/")[1];
@@ -8,29 +9,56 @@ $(document).ready(function() {
 	$(document).on("click", "#logoff", goOffline);
 
 	$.get("../api/users/" + index, function(data) {
+		username = data.username;
 		userAddress = data.activeLocation;
-		console.log("this users address is " + userAddress);
+		console.log(username + "'s address is " + userAddress);
 		geocoder.geocode({ "address": userAddress}, function(results, status) {
 			if (status == "OK") {
 				userLocation = results[0].geometry.location;
 			}
 		})
 
+		playerRef = database.ref("/group/" + index);
+		playerRef.set({
+			name: username
+		});
+		chatData.orderByChild("time").on("child_added", function(snapshot) {
+			$("#chat-messages").append("<p class=player" + snapshot.val().idNum + "><span>" + snapshot.val().name + "</span>: " + snapshot.val().message + "</p>");
+
+			$("#chat-messages").scrollTop($("#chat-messages")[0].scrollHeight);
+		});
 	})
 
+	function displayResults() {
+		$.get("../api/users/online", function(data) {
+			var onlineUsers = "";
+			groupAddresses = [];
+			for(var i = 0; i < data.length; i++) {
+				groupAddresses.push(data[i].activeLocation);
+				onlineUsers += data[i].username;
+				onlineUsers += "<br>";
+			}
+			$("#users-online").html(onlineUsers);
+			console.log(groupAddresses);
+			addressToLatLng();
+		});
+	}
 
-	$.get("../api/users/online", function(data) {
-		var onlineUsers = "";
-		for(var i = 0; i < data.length; i++) {
-			groupAddresses.push(data[i].activeLocation);
-			onlineUsers += data[i].username;
-			onlineUsers += "<br>";
-		}
-		$("#users-online").html(onlineUsers);
-		console.log(groupAddresses);
-		addressToLatLng();
-	});
 
+	var config = {
+		apiKey: "AIzaSyDrwFzYNLjQEOMp5qNw0ISjOQOwHMq9XIQ",
+		authDomain: "groupproject2-31ab2.firebaseapp.com",
+		databaseURL: "https://groupproject2-31ab2.firebaseio.com",
+		projectId: "groupproject2-31ab2",
+		storageBucket: "groupproject2-31ab2.appspot.com",
+		messagingSenderId: "1094329325836"
+	};
+	firebase.initializeApp(config);
+
+	var database = firebase.database();
+	var chatData = database.ref("/chat");
+	var groupRef = database.ref("/group");
+	var playerRef;
 
 
 
@@ -52,8 +80,6 @@ $(document).ready(function() {
 	function initMap() {
 		// --- Thing needed for directions to display properly
 		directionsDisplay = new google.maps.DirectionsRenderer();
-
-
 
 		// --- Defining the map
 		map = new google.maps.Map(document.getElementById('map'), {
@@ -77,7 +103,14 @@ $(document).ready(function() {
 
 		// --- Once we have directions, display them on the map
 		directionsDisplay.setMap(map);
+
+
+		groupRef.on("value", function(snapshot) {
+			console.log("Group changed");
+			displayResults();
+		});
 	}
+
 
 	// --- This makes a Lettered Marker for each interesting thing
 	function callback(results, status){
@@ -88,8 +121,10 @@ $(document).ready(function() {
 		}
 	}
 
+
 	// --- Geocode addresses into LatLng
 	function addressToLatLng() {
+		console.log(groupAddresses);
 		geocoder.geocode({ "address": groupAddresses[k]}, function(results, status) {
 			if (status == "OK") {
 				bound.extend(results[0].geometry.location);
@@ -105,6 +140,7 @@ $(document).ready(function() {
 			}
 		})
 	}
+
 
 	// --- Function that actually makes the Lettered Markers
 	function createLetterMarkers(place){
@@ -151,6 +187,7 @@ $(document).ready(function() {
 		});
 	}
 
+
 	// --- Function that makes the normal marker
 	function createNormalMarkers(place){
 		var marker = new google.maps.Marker({
@@ -162,6 +199,18 @@ $(document).ready(function() {
 
 	function goOffline(event) {
 		event.preventDefault();
+
+		var chatDataDisc = database.ref("/chat/" + Date.now());
+
+	    playerRef.onDisconnect().remove();
+
+	    chatDataDisc.onDisconnect().set({
+	      name: username,
+	      time: firebase.database.ServerValue.TIMESTAMP,
+	      message: "has disconnected.",
+	      idNum: 0
+	    });
+
 		var data = { id: index, online: false, activeLocation: null };
 		$.ajax({
 			method: "PUT",
@@ -172,7 +221,40 @@ $(document).ready(function() {
 			window.location.href = "/welcome";
 		});
 	}
+
+
+
+	$("#chat-send").click(function() {
+		if ($("#chat-input").val() !== "") {
+			var message = $("#chat-input").val();
+
+			chatData.push({
+				name: username,
+				message: message,
+				time: firebase.database.ServerValue.TIMESTAMP,
+				idNum: 1
+			});
+
+			$("#chat-input").val("");
+		}
+	});
+
+
+	$("#chat-input").keypress(function(e) {
+		if (e.keyCode === 13 && $("#chat-input").val() !== "") {
+			var message = $("#chat-input").val();
+
+			chatData.push({
+				name: username,
+				message: message,
+				time: firebase.database.ServerValue.TIMESTAMP,
+				idNum: 1
+			});
+
+			$("#chat-input").val("");
+		}
+	});
+
+
+	displayResults();
 })
-
-
-

@@ -138,3 +138,34 @@ form {
   margin-left: auto;
   max-width: 70%;
   min-height: 300px;
+}
+
+
+#chat {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  width: 70%;
+}
+
+#chat-messages {
+  height: 150px;
+  overflow: auto;
+  background-color: #fffcf7;
+}
+
+#chat-bar {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 70%;
+}
+
+.player1 {
+  color: #419d78;
+}
+
+.player0 {
+  color: #000;
+  background-color: #d3d3d3;
+}

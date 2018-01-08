@@ -30,14 +30,15 @@ $(document).ready(function() {
 
 
 			if (!usernameInput || !passwordInput || !addressInput) {
-				console.log("tell user to fill in all fields");
+				$("#error-text").text("Please fill in all fields");
+				$("#message-modal").modal("toggle");
 				return;
 			}
 			else if (currentUsernames.indexOf(usernameInput) != -1) {
-				console.log("tell user to choose a new username");
+				$("#error-text").text("That username already exists");
+				$("#message-modal").modal("toggle");
 				return;
 			}
-			console.log("user input looks good");
 
 			addNewUser({
 				username: usernameInput,

@@ -22,17 +22,20 @@
 			<!-- THIS WILL ACCESS THE USER'S CURRENT LOCATION -->
 			<div class="row">
 				<a id="current-address" class="btn btn-default">Use my current location</a>
+				<br>(Location Accuracy may vary)
 			</div>
 			<div class="row">
-				Custom Location
+				Custom Location<br>
 				<input placeholder="Enter an address" id="custom-input" type="text" />
 				<br>
 				<br>
 				<a id="custom-address" class="btn btn-default">Use this location</a>
 			</div>
 		</div>
+		
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<script src="../assets/js/location.js" type="text/javascript"></script>
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbnqdrc-v_3ZxMG8fQS_53DnUUHUOSquc&libraries=places"></script>
+		<script async defer src="../assets/js/location.js" type="text/javascript"></script>
 	</body>
 </html>
