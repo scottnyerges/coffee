@@ -153,6 +153,7 @@ $(document).ready(function() {
 
 		// --- On-click listener made for each marker
 		google.maps.event.addListener(marker, 'click', function() {
+			console.log(place);
 			// --- Figuring out Store Hours
 			if (place.opening_hours) {
 				if (place.opening_hours.open_now) {
