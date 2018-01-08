@@ -13,28 +13,70 @@
 		<link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
 	</head>
 	<body>
-		<div class="container">
-			<div class="row" id="fontStyle">let's get coffee!</div>
-			<div class="row"><br>
-				<div id="map"></div>
-			</div>
-			<div class="row" id="users-online">
-			</div>
-			<div id="chat">
-				<div id="chat-messages"></div>
-				<div id="chat-bar">
-					<input id="chat-input" />
-					<button id="chat-send">Send</button>
+		<!-- ONE CONTAINER TO BIND THEM ALL -->
+		<div class="container clearfix">
+
+			<div class="section group clearfix">
+				<div class="col span_5_of_5">
+					<div class="row" id="fontStyle">let's get coffee!</div>
 				</div>
-			</div>
-			<div class="row">
-				<button id="logoff" class="btn btn-default">Log off</button>
-			</div>
+			</div>	
+
+			<div class="section group">
+				<div class="col span_3_of_5">
+					<!-- <div class="row"><br> -->
+						<div id="map"></div>
+					<!-- </div> -->
+				</div>
+	
+				<div class="col span_2_of_5">
+					<div id="fontStyle3">venue info</div>
+					<div id="reviewsBox">reviews, hours, address, etc. go here for highlighted venue</div>
+				</div>	
+			</div>	
+
+			
+			<div class="section group">
+				<div class="col span_3_of_5">
+					<div id="fontStyle3">who's online?</div>			
+					<div id="users-online">
+						<!-- THIS SPACE LEFT BLANK -->
+					</div>
+				</div>
+				
+				<div class="col span_2_of_5">
+					<div id="fontStyle3">coffee talk</div>	
+					<div id="chat">
+						<div id="chat-messages"></div>
+						<div id="chat-bar">
+						<input id="chat-input" />
+						<button id="chat-send">Send</button>
+						</div>
+					</div>
+				</div>	
+			</div>	
+
+			<div class="section group">
+				<div class="col span_5_of_5">
+					<div class="row">
+					<button id="logoff" class="btn btn-default">log off</button>
+					</div>
+				</div>	
+			</div>	
+			
+		<!-- CLOSE THE CONTAINER -->
 		</div>
+		
+		<!-- FIREBASE -->
 		<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+		<!-- AJAX -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<!-- BOOTSTRAP -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<!-- GOOGLE MAPS -->
 		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbnqdrc-v_3ZxMG8fQS_53DnUUHUOSquc&libraries=places"></script>
+		<!-- LINK TO LOCAL PAGE SCRIPT -->
 		<script async defer src="../assets/js/results.js" type="text/javascript"></script>
+
 	</body>
 </html>
