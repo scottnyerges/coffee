@@ -6,7 +6,7 @@
   margin: auto;
   padding: 10px;
   margin-top: 10px;
-  height: 600px;
+/*  height: 600px;*/
   width: 90%;
   border-width: 5px;
   border-style: solid;
@@ -14,13 +14,71 @@
   border-radius: 25px;
 }
 
-.column {
+/*.column {
   text-align: center;
-}
+}*/
 
 .row {
     text-align: center;
+/*    border-style: solid;
+    border-width: 1px;
+    border-color: black;*/
 }
+
+/*  SECTIONS  */
+
+.section {
+  clear: both;
+  padding: 10px;/*
+  margin: 10px;*/
+/*  border-width: 1px;
+  border-style: dashed;
+  border-color: gray;*/
+}
+
+/*  COLUMN SETUP  */
+
+.col {
+  display: block;
+  float:left;
+  margin: 1% 0 1% 1.6%;
+/*  border-width: 1px;
+  border-style: solid;
+  border-color: black;*/
+/*  background-color: lightgray;*/
+}
+.col:first-child { margin-left: 0; }
+
+/*  GROUPING  */
+.group:before,
+.group:after { content:""; display:table; }
+.group:after { clear:both;}
+.group { zoom:1; /* For IE 6/7 */ }
+
+/*  GRID OF FIVE  */
+.span_5_of_5 {
+  width: 100%;
+}
+.span_4_of_5 {
+  width: 79.68%;
+}
+.span_3_of_5 {
+  width: 59.36%;
+}
+.span_2_of_5 {
+  width: 39.04%;
+}
+.span_1_of_5 {
+  width: 18.72%;
+}
+
+/*  GO FULL WIDTH BELOW 480 PIXELS */
+@media only screen and (max-width: 480px) {
+  .col {  margin: 1% 0 1% 0%; }
+  .span_1_of_5, .span_2_of_5, .span_3_of_5, .span_4_of_5, .span_5_of_5 { width: 100%; }
+}
+
+
 
 .button {
     background-color: #4885ed;
@@ -40,7 +98,6 @@
 
 form {
     font-family: 'Oswald', sans-serif;
-
 
 }
 
@@ -73,6 +130,15 @@ form {
   font-size: 20px;
   color: #4885ed;
   opacity: 0.95;
+}
+
+#fontStyle3 {
+  font-family: 'Alfa Slab One', cursive;
+  font-size: 16px;
+  text-align: center;
+  color: #4885ed;
+  opacity: 0.95;
+  margin-bottom: 5px;
 }
 
 
@@ -118,47 +184,63 @@ form {
 /*  animation-delay: 0.5s;
 */}
 
-.button {
-    background-color: #4885ed;
-    border: none;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 25px;
-    padding: 10px 40px;
-}
+
 
 #map {
   display: block;
-  margin-right: auto;
-  margin-left: auto;
-  max-width: 70%;
+  margin: auto;
+  margin-bottom: 10px;
+/*  margin-right: auto;
+  margin-left: auto;*/
+  max-width: 95%;
   min-height: 300px;
 }
 
 
 #chat {
   display: block;
-  margin-right: auto;
-  margin-left: auto;
-  width: 70%;
+/*  margin-right: auto;
+  margin-left: auto;*/
+  width: 100%;
+
 }
 
 #chat-messages {
   height: 150px;
   overflow: auto;
   background-color: #fffcf7;
+      border-width: 1px;
+  border-style: dashed;
+  border-color: gray;
+  padding: 5px;
+
 }
 
 #chat-bar {
   display: block;
-  margin-right: auto;
-  margin-left: auto;
-  max-width: 70%;
+/*  margin-right: auto;
+  margin-left: auto;*/
+  max-width: 90%;
+  text-align: center;
+  margin-top: 5px;
+}
+
+#reviewsBox {
+  background-color: linen;
+        border-width: 1px;
+  border-style: dashed;
+  border-color: gray;
+  padding: 5px;
+}
+
+#users-online {
+  background-color: linen;
+  font-size: 14px;
+    background-color: #fffcf7;
+      border-width: 1px;
+  border-style: dashed;
+  border-color: gray;
+  padding: 5px;
 }
 
 .player1 {
