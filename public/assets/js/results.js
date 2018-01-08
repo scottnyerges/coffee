@@ -115,8 +115,13 @@ $(document).ready(function() {
 	// --- This makes a Lettered Marker for each interesting thing
 	function callback(results, status){
 		if (status === google.maps.places.PlacesServiceStatus.OK) {
-			for (var i=0; i < 20; i++) {
-				createLetterMarkers(results[i]);
+			for (var i=0; i < results.length; i++) {
+				if (results[i].types.indexOf("bar") != -1 || results[i].types.indexOf("cafe") != -1) {
+					createLetterMarkers(results[i]);
+				}
+				else {
+					console.log("That wasnt a bar or cafe");
+				}
 			}
 		}
 	}

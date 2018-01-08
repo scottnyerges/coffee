@@ -2,8 +2,11 @@ $(document).ready(function() {
 	var geocoder = new google.maps.Geocoder();
 
 	$(document).on("click", "#home-address", choseHomeAddress);
+	$(document).on("click", "#change-home", choseChangeHome);
 	$(document).on("click", "#current-address", choseCurrentLocation);
 	$(document).on("click", "#custom-address", choseCustom);
+
+
 
 	var url = window.location.href;
 	console.log(url);
@@ -14,6 +17,19 @@ $(document).ready(function() {
 		$.get("../api/users/" + index, function(data) {
 			updateActiveLocation(data.homeAddress);
 		})
+	}
+
+	function choseChangeHome() {
+		var newHome = $("#new-home").val().trim();
+		var data = { id: index, homeAddress: newHome };
+		$.ajax({
+			method: "PUT",
+			url: "/api/users",
+			data: data
+		})
+		.done(function() {
+			updateActiveLocation(newHome);
+		});
 	}
 
 	function choseCurrentLocation() {

@@ -19,6 +19,10 @@
 			<div class="row">
 				<a id="home-address" class="btn btn-default">Use my home address</a>
 			</div>
+			<div class="row">
+				<input placeholder="New Home Address" id="new-home" type="text" /><br>
+				<a id="change-home" class="btn btn-default">Update my home address</a>
+			</div>
 			<!-- THIS WILL ACCESS THE USER'S CURRENT LOCATION -->
 			<div class="row">
 				<a id="current-address" class="btn btn-default">Use my current location</a>
@@ -30,6 +34,22 @@
 				<br>
 				<br>
 				<a id="custom-address" class="btn btn-default">Use this location</a>
+			</div>
+		</div>
+
+		<div id="message-modal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h2 class="modal-title">Enter a new </h2>
+					</div>
+					<div class="modal-body">
+						<h4 id="error-text"></h4>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
 			</div>
 		</div>
 		
