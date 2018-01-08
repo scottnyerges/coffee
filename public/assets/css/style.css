@@ -29,11 +29,30 @@
 
 .section {
   clear: both;
-  padding: 10px;/*
+/*  padding: 10px;/**/
   margin: 10px;*/
 /*  border-width: 1px;
   border-style: dashed;
   border-color: gray;*/
+}
+
+#sectionStyle {
+/*  background-color: #e3f2fd;*/
+  padding: 10px;
+  border-width: 0.5px;
+  border-style: solid;
+  border-color: #e3f2fd;
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+
+#sectionStyle2 {
+  background-color: #e3f2fd;
+  padding: 10px;
+/*  border-width: 0.5px;
+  border-style: solid;
+  border-color: gray;*/
+  border-radius: 15px;
 }
 
 /*  COLUMN SETUP  */
@@ -42,12 +61,12 @@
   display: block;
   float:left;
   margin: 1% 0 1% 1.6%;
-/*  border-width: 1px;
-  border-style: solid;
-  border-color: black;*/
-/*  background-color: lightgray;*/
+
 }
+
 .col:first-child { margin-left: 0; }
+
+
 
 /*  GROUPING  */
 .group:before,
@@ -93,8 +112,23 @@
     border-radius: 25px;
     padding: 10px 40px;
     font-family: 'Oswald', sans-serif;
-
 }
+
+.chatbutton {
+  background-color: #4885ed;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 25px;
+    padding: 5px 10px;
+    font-family: 'Oswald', sans-serif;
+}
+
 
 form {
     font-family: 'Oswald', sans-serif;
@@ -192,7 +226,7 @@ form {
   margin-bottom: 10px;
 /*  margin-right: auto;
   margin-left: auto;*/
-  max-width: 95%;
+  max-width: 100%;
   min-height: 300px;
 }
 
@@ -203,17 +237,21 @@ form {
   margin-left: auto;*/
   width: 100%;
 
+
 }
 
 #chat-messages {
   height: 150px;
   overflow: auto;
-  background-color: #fffcf7;
+/*  background-color: #fffcf7;
       border-width: 1px;
   border-style: dashed;
-  border-color: gray;
+  border-color: gray;*/
   padding: 5px;
-
+  background-color: #ffffff;
+  font-family: verdana;
+  font-size: 14px;
+      border-radius: 15px;
 }
 
 #chat-bar {
@@ -223,24 +261,46 @@ form {
   max-width: 90%;
   text-align: center;
   margin-top: 5px;
+
+}
+
+#chat-input {
+/*    background-color: #fffcf7;
+      border-width: 1px;
+  border-style: dashed;
+  border-color: gray;*/
+  padding: 5px;
+  background-color: #ffffff;
+      border-radius: 15px;
+
+
 }
 
 #reviewsBox {
-  background-color: linen;
-        border-width: 1px;
+
+/*        border-width: 0.5px;
   border-style: dashed;
-  border-color: gray;
+  border-color: gray;*/
   padding: 5px;
+  background-color: #ffffff;
+    font-family: verdana;
+  font-size: 18px;
+
+
 }
 
 #users-online {
-  background-color: linen;
+/*  background-color: linen;
   font-size: 14px;
     background-color: #fffcf7;
       border-width: 1px;
   border-style: dashed;
-  border-color: gray;
+  border-color: gray;*/
   padding: 5px;
+  background-color: #ffffff;
+    font-family: verdana;
+  font-size: 14px;
+    border-radius: 15px;
 }
 
 .player1 {
@@ -248,6 +308,6 @@ form {
 }
 
 .player0 {
-  color: #000;
-  background-color: #d3d3d3;
+  color: #000;/*
+  background-color: #d3d3d3;*/
 }
