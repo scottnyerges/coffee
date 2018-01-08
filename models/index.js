@@ -1,17 +1,11 @@
 'use strict';
 
-var mysql     = require("mysql");
 var fs        = require('fs');
 var path      = require('path');
 var Sequelize = require('sequelize');
 var basename  = path.basename(__filename);
 var env       = process.env.NODE_ENV || 'development';
-var config    = mysql.createConnection({
-  port: 3306,
-  host: "us-cdbr-iron-east-05.cleardb.net",
-  user: "b01d69862562e9",
-  password: "b1295b37",
-  database: "heroku_5ce45aa9f0b1ba3"});
+var config    = require(__dirname + '/../config/config.json')[env];
 var db        = {};
 
 if (config.use_env_variable) {
