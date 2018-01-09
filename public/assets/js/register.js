@@ -30,12 +30,12 @@ $(document).ready(function() {
 
 
 			if (!usernameInput || !passwordInput || !addressInput) {
-				$("#error-text").text("Please fill in all fields");
+				$("#error-text").text("please fill in all fields");
 				$("#message-modal").modal("toggle");
 				return;
 			}
 			else if (currentUsernames.indexOf(usernameInput) != -1) {
-				$("#error-text").text("That username already exists");
+				$("#error-text").text("darn, that name already exists");
 				$("#message-modal").modal("toggle");
 				return;
 			}
