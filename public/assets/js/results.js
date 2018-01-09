@@ -116,7 +116,13 @@ $(document).ready(function() {
 	function callback(results, status){
 		if (status === google.maps.places.PlacesServiceStatus.OK) {
 			for (var i=0; i < 20; i++) {
-				createLetterMarkers(results[i]);
+				if (results[i].types.indexOf("bar") != -1 || results[i].types.indexOf("cafe") != -1) {
+                    createLetterMarkers(results[i]);
+                }
+                else {
+                    console.log("That wasnt a bar or cafe");
+                }
+
 			}
 		}
 	}
@@ -166,6 +172,11 @@ $(document).ready(function() {
 			else {
 				placeOpenNow = " Possibly, not sure";
 			}
+
+			$("#loc-name").text("Name: " + place.name);
+            $("#loc-address").text("Address: " + place.vicinity);
+            $("#loc-rating").text("Rating: " + place.rating);
+            $("#loc-open").text("Open Now: " + placeOpenNow);
 
 			// --- Defines what appears in the information bubble
 			infowindow.setContent("<h5 id='place-name'>" + place.name + "</h5><h7>" + place.vicinity + "<br>Open Now:  " + placeOpenNow + "</h7>");
