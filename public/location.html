@@ -36,13 +36,13 @@
 
 			</div>
 			<div class="row">
-				<input placeholder="enter an address" id="custom-input" type="text" />
+				<br>
+				<a id="custom-address" class="btn btn-default">Use a custom address</a>
 			</div>
 
 		<!-- CLOSE THE CONTAINER -->
 		</div>
-
-		<div id="message-modal" class="modal fade" role="dialog">
+		<div id="update-modal" class="modal fade" role="dialog">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -52,7 +52,23 @@
 							<input placeholder="Enter an address" id="update-input" type="text" />
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Update</button>
+							<button type="button" id="update-submit" class="btn btn-default" data-dismiss="modal">Update</button>
+						</div>
+					</div>
+
+				</div>
+		</div>
+		<div id="custom-modal" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h2 class="modal-title">Enter Custom Address</h2>
+						</div>
+						<div class="modal-body">
+							<input placeholder="Enter an address" id="custom-input" type="text" />
+						</div>
+						<div class="modal-footer">
+							<button type="button" id="custom-submit" class="btn btn-default" data-dismiss="modal">Enter</button>
 						</div>
 					</div>
 
