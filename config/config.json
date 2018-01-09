@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "root",
-    "port": 8889,
+    "port": 3000,
     "database": "users_db",
     "host": "localhost",
     "dialect": "mysql"
