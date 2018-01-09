@@ -4,11 +4,25 @@ $(document).ready(function() {
 	$(document).on("click", "#home-address", choseHomeAddress);
 	$(document).on("click", "#current-address", choseCurrentLocation);
 	$(document).on("click", "#custom-address", choseCustom);
+	$(document).on("click","#update-address",toggle);
+	$(document).on("click","button",updateAddress);
+
+
+
 
 	var url = window.location.href;
 	console.log(url);
 	var index = url.split("location/")[1];
 	console.log("index is " + index);
+
+	function toggle(){
+		$("#message-modal").modal("toggle");
+	}
+
+	function updateAddress(){
+		var newHomeAddress = $("#update-input").val().trim();
+		updateHomeLocation(newHomeAddress);
+	}
 
 	function choseHomeAddress() {
 		$.get("../api/users/" + index, function(data) {
@@ -61,6 +75,18 @@ $(document).ready(function() {
 		})
 		.done(function() {
 			window.location.href = "/results/" + index;
+		});
+	}
+	function updateHomeLocation(loc) {
+		var data = { id: index, homeAddress: loc };
+		console.log(data);
+		$.ajax({
+			method: "PUT",
+			url: "/api/users",
+			data: data
+		})
+		.done(function() {
+			updateActiveLocation(loc);
 		});
 	}
 })
