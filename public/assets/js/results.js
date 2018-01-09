@@ -90,15 +90,12 @@ $(document).ready(function() {
 		// --- THIS NEED TO CREATE A MARKER AT THE INDIVIDUAL USER'S ADDRESS *************
 		createNormalMarkers(userLocation);
 
-		// --- Thing needed so the information bubbles work
-		infowindow = new google.maps.InfoWindow();
-
 		// --- Finding places to meet in the area
 		var service = new google.maps.places.PlacesService(map);
 		service.nearbySearch({
 			location: centerLocation,
-			radius: 400,
-			type: ['bar', 'cafe']
+			radius: 500,
+			type: ['cafe']
 		}, callback);
 
 		// --- Once we have directions, display them on the map
@@ -116,12 +113,7 @@ $(document).ready(function() {
 	function callback(results, status){
 		if (status === google.maps.places.PlacesServiceStatus.OK) {
 			for (var i=0; i < results.length; i++) {
-				if (results[i].types.indexOf("bar") != -1 || results[i].types.indexOf("cafe") != -1) {
-					createLetterMarkers(results[i]);
-				}
-				else {
-					console.log("That wasnt a bar or cafe");
-				}
+				createLetterMarkers(results[i]);
 			}
 		}
 	}
@@ -172,10 +164,6 @@ $(document).ready(function() {
 			else {
 				placeOpenNow = " Possibly, not sure";
 			}
-
-			// --- Defines what appears in the information bubble
-			infowindow.setContent("<h5 id='place-name'>" + place.name + "</h5><h7>" + place.vicinity + "<br>Open Now:  " + placeOpenNow + "</h7>");
-			infowindow.open(map, this);
 
 			// --- Defines our Directions request
 			var request = {
