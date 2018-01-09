@@ -90,15 +90,12 @@ $(document).ready(function() {
 		// --- THIS NEED TO CREATE A MARKER AT THE INDIVIDUAL USER'S ADDRESS *************
 		createNormalMarkers(userLocation);
 
-		// --- Thing needed so the information bubbles work
-		infowindow = new google.maps.InfoWindow();
-
 		// --- Finding places to meet in the area
 		var service = new google.maps.places.PlacesService(map);
 		service.nearbySearch({
 			location: centerLocation,
-			radius: 400,
-			type: ['bar', 'cafe']
+			radius: 500,
+			type: ['cafe']
 		}, callback);
 
 		// --- Once we have directions, display them on the map
@@ -115,14 +112,8 @@ $(document).ready(function() {
 	// --- This makes a Lettered Marker for each interesting thing
 	function callback(results, status){
 		if (status === google.maps.places.PlacesServiceStatus.OK) {
-			for (var i=0; i < 20; i++) {
-				if (results[i].types.indexOf("bar") != -1 || results[i].types.indexOf("cafe") != -1) {
-                    createLetterMarkers(results[i]);
-                }
-                else {
-                    console.log("That wasnt a bar or cafe");
-                }
-
+			for (var i=0; i < results.length; i++) {
+				createLetterMarkers(results[i]);
 			}
 		}
 	}
@@ -159,6 +150,7 @@ $(document).ready(function() {
 
 		// --- On-click listener made for each marker
 		google.maps.event.addListener(marker, 'click', function() {
+			console.log(place);
 			// --- Figuring out Store Hours
 			if (place.opening_hours) {
 				if (place.opening_hours.open_now) {
@@ -177,10 +169,6 @@ $(document).ready(function() {
             $("#loc-address").text("Address: " + place.vicinity);
             $("#loc-rating").text("Rating: " + place.rating);
             $("#loc-open").text("Open Now: " + placeOpenNow);
-
-			// --- Defines what appears in the information bubble
-			infowindow.setContent("<h5 id='place-name'>" + place.name + "</h5><h7>" + place.vicinity + "<br>Open Now:  " + placeOpenNow + "</h7>");
-			infowindow.open(map, this);
 
 			// --- Defines our Directions request
 			var request = {
