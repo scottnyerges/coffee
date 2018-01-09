@@ -135,6 +135,11 @@ $(document).ready(function() {
 			radius: 500,
 			type: ['cafe']
 		}, callback);
+		service.nearbySearch({
+			location: centerLocation,
+			radius: 500,
+			type: ['bar']
+		}, callback);
 
 		directionsDisplay.setMap(map);
 	}
@@ -142,7 +147,7 @@ $(document).ready(function() {
 	// -- This makes a Lettered Marker for each coffee shop thing
 	function callback(results, status){
 		if (status === google.maps.places.PlacesServiceStatus.OK) {
-			for (var i=0; i < results.length; i++) {
+			for (var i=0; i < 7; i++) {
 				createLetterMarkers(results[i]);
 			}
 		}
@@ -165,7 +170,7 @@ $(document).ready(function() {
 					placeOpenNow = " Definitely Yes";
 				}
 				else {
-					placeOpenNow = " Nope, sorry.";
+					placeOpenNow = " Nope, sorry";
 				}
 			}
 			// Displays if Google doesn't have info for this place
@@ -173,10 +178,17 @@ $(document).ready(function() {
 				placeOpenNow = " Possibly, not sure";
 			}
 
+			if(place.rating) {
+				placeRating = place.rating;
+			}
+			else {
+				placeRating = "Has not been reviewed";
+			}
+
 			// Update page with clicked location's info
 			$("#loc-name").text("Name: " + place.name);
             $("#loc-address").text("Address: " + place.vicinity);
-            $("#loc-rating").text("Rating: " + place.rating);
+            $("#loc-rating").text("Rating: " + placeRating);
             $("#loc-open").text("Open Now: " + placeOpenNow);
 
 			// Defines our Directions request

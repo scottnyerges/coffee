@@ -3,11 +3,10 @@ $(document).ready(function() {
 
 	$(document).on("click", "#home-address", choseHomeAddress);
 	$(document).on("click", "#current-address", choseCurrentLocation);
-	$(document).on("click", "#custom-address", choseCustom);
-	$(document).on("click","#update-address",toggle);
-	$(document).on("click","button",updateAddress);
-
-
+	$(document).on("click", "#custom-address", toggleCustom);
+	$(document).on("click","#update-address",toggleUpdate);
+	$(document).on("click","#update-submit",updateAddress);
+	$(document).on("click","#custom-submit",customAddress);
 
 
 	var url = window.location.href;
@@ -15,13 +14,22 @@ $(document).ready(function() {
 	var index = url.split("location/")[1];
 	console.log("index is " + index);
 
-	function toggle(){
-		$("#message-modal").modal("toggle");
+	function toggleUpdate(){
+		$("#update-modal").modal("toggle");
+	}
+
+	function toggleCustom(){
+		$("#custom-modal").modal("toggle");
 	}
 
 	function updateAddress(){
 		var newHomeAddress = $("#update-input").val().trim();
 		updateHomeLocation(newHomeAddress);
+	}
+
+	function customAddress(){
+		var userCustomAddress = $("#custom-input").val().trim();
+		updateActiveLocation(userCustomAddress);
 	}
 
 	function choseHomeAddress() {
@@ -58,12 +66,6 @@ $(document).ready(function() {
 			return;
 		}
 	}
-
-	function choseCustom() {
-		var userAddress = $("#custom-input").val().trim();
-		updateActiveLocation(userAddress);
-	}
-
 
 	function updateActiveLocation(loc) {
 		var data = { id: index, online: true, activeLocation: loc };
