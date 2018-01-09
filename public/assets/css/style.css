@@ -59,6 +59,10 @@
 
 #sectionStyle2 {
   padding: 10px;
+  margin-bottom: 20px;
+  border-width: 0.5px;
+  border-style: solid;
+  border-color: gray;
   border-radius: 15px;
 }
 
@@ -267,7 +271,7 @@ form {
 }
 
 #chat-messages {
-  height: 150px;
+  height: 250px;
   overflow: auto;
   padding: 5px;
   background-color: #ffffff;
@@ -294,6 +298,10 @@ form {
   background-color: #ffffff;
   font-family: verdana;
   font-size: 18px;
+  height: 75px;
+
+  border-radius: 15px;
+
 }
 
 #users-online {
