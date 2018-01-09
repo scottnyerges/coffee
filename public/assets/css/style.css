@@ -4,10 +4,9 @@
 .container{
   display: grid;
   margin: auto;
-  padding: 10px;
-/*  margin-top: 10px;*/
-  height: 93%;
-  width: 90%;
+  padding: 20px;
+  height: 95%;
+  width: 95%;
   border-width: 5px;
   border-style: solid;
   border-color: #4885ed;
@@ -17,32 +16,39 @@
   bottom: 0;
   right: 0;
   left: 0;
+  background-color: transparent;
 }
 
-/*.column {
-  text-align: center;
-}*/
+.container2{
+  display: grid;
+  margin: auto;
+  padding: 10px;
+  height: 95%;
+  width: 95%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #4885ed;
+  border-radius: 25px;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: transparent;
+}
 
 .row {
     text-align: center;
-/*    border-style: solid;
-    border-width: 1px;
-    border-color: black;*/
 }
 
 /*  SECTIONS  */
 
 .section {
   clear: both;
-  padding: 10px;/*
-  margin: 10px;*/
-/*  border-width: 1px;
-  border-style: dashed;
-  border-color: gray;*/
+  padding: 10px;
 }
 
 #sectionStyle {
-/*  background-color: #e3f2fd;*/
   padding: 10px;
   border-width: 0.5px;
   border-style: solid;
@@ -52,11 +58,13 @@
 }
 
 #sectionStyle2 {
+  padding: 10px;
+  border-radius: 15px;
+}
+
+#sectionStyle3 {
   background-color: #e3f2fd;
   padding: 10px;
-/*  border-width: 0.5px;
-  border-style: solid;
-  border-color: gray;*/
   border-radius: 15px;
 }
 
@@ -72,6 +80,9 @@
 .col:first-child { margin-left: 0; }
 
 
+form {
+    font-family: 'Oswald', sans-serif;
+}
 
 /*  GROUPING  */
 .group:before,
@@ -103,27 +114,19 @@
 
 }
 
-
-
-
+/* BUTTON STYLING */
 
 .button {
     background-color: #4885ed;
     border: none;
     color: white;
-    text-align: center;
-    text-decoration: none;
     display: inline-block;
-    font-size: 18px;
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 25px;
     padding: 10px 40px;
-font-family: 'Roboto Condensed', sans-serif;
     position: relative;
-
-      transition: all 500ms ease; 
-
+    transition: all 500ms ease; 
 }
 
 .button:before {
@@ -142,8 +145,12 @@ font-family: 'Roboto Condensed', sans-serif;
   width: 100%;
 }
 
-
-
+#buttonStyle, #home-address, #current-address, #custom-address, #logoff {
+   text-align: center;
+    text-decoration: none;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 18px;
+}
 
 .chatbutton {
   background-color: #4885ed;
@@ -160,15 +167,11 @@ font-family: 'Roboto Condensed', sans-serif;
     font-family: 'Oswald', sans-serif;
 }
 
-
-form {
-    font-family: 'Oswald', sans-serif;
-
-}
+/* STYLING FOR LOGO */
 
 #imgStyle {
   text-align: center;
-  width: 95%;
+  max-width: 300px; 
 }
 
 #imgStyle2 {
@@ -182,6 +185,8 @@ form {
   color: #4885ed;
   opacity: 0.95;
 }
+
+/* FONT STYLES */
 
 #fontStyle {
   font-family: 'Alfa Slab One', cursive;
@@ -205,8 +210,6 @@ form {
   opacity: 0.95;
   margin-bottom: 5px;
 }
-
-
 
 /* ANIMATION */
 
@@ -246,99 +249,82 @@ form {
   animation-name: logoFadeIn2;
   animation-duration: 2.0s;
   animation-fill-mode: forwards;
-/*  animation-delay: 0.5s;
-*/}
+}
 
-
+/* RESULTS PAGE STYLE */
 
 #map {
   display: block;
   margin: auto;
   margin-bottom: 10px;
-/*  margin-right: auto;
-  margin-left: auto;*/
   max-width: 100%;
   min-height: 300px;
 }
 
-
 #chat {
   display: block;
-/*  margin-right: auto;
-  margin-left: auto;*/
   width: 100%;
-
-
 }
 
 #chat-messages {
   height: 150px;
   overflow: auto;
-/*  background-color: #fffcf7;
-      border-width: 1px;
-  border-style: dashed;
-  border-color: gray;*/
   padding: 5px;
   background-color: #ffffff;
   font-family: verdana;
   font-size: 14px;
-      border-radius: 15px;
+  border-radius: 15px;
 }
 
 #chat-bar {
   display: block;
-/*  margin-right: auto;
-  margin-left: auto;*/
   max-width: 90%;
   text-align: center;
   margin-top: 5px;
-
 }
 
 #chat-input {
-/*    background-color: #fffcf7;
-      border-width: 1px;
-  border-style: dashed;
-  border-color: gray;*/
   padding: 5px;
   background-color: #ffffff;
-      border-radius: 15px;
-
-
+  border-radius: 15px;
 }
 
 #reviewsBox {
-
-/*        border-width: 0.5px;
-  border-style: dashed;
-  border-color: gray;*/
   padding: 5px;
   background-color: #ffffff;
-    font-family: verdana;
+  font-family: verdana;
   font-size: 18px;
-
-
 }
 
 #users-online {
-/*  background-color: linen;
-  font-size: 14px;
-    background-color: #fffcf7;
-      border-width: 1px;
-  border-style: dashed;
-  border-color: gray;*/
   padding: 5px;
   background-color: #ffffff;
-    font-family: verdana;
+  font-family: verdana;
   font-size: 14px;
-    border-radius: 15px;
+  border-radius: 15px;
 }
+
+/* STYLING FOR CHAT WINDOW */
 
 .player1 {
   color: #419d78;
 }
 
 .player0 {
-  color: #000;/*
-  background-color: #d3d3d3;*/
+  color: #000;
+}
+
+/* INPUT, FORM STYLE */
+
+#myForm, #custom-input, #new-user-form {
+  font-family: verdana;
+  text-align: center;
+  font-size: 14px;
+}
+
+#userName, #userPass, #newUserName, #newUserPass, #newUserAddress, #custom-input{
+  border-radius: 15px;
+  border-width: 0.5px;
+  margin-bottom: 20px;
+  padding: 5px;
 }

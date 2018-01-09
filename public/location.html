@@ -11,28 +11,38 @@
 		<link rel="stylesheet" href="../assets/css/style.css" type="text/css"/>
 		<!-- GOOGLE FONT -->
 		<link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
-		<!-- GOOGLE MAPS THINGY -->
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+
+
 	</head>
 	<body>
+		<!-- ONE CONTAINER TO BIND THEM ALL -->
 		<div class="container">
-			<div class="row"><h1>Where are you?</h1></div>
-			<div class="row">
-				<a id="home-address" class="btn btn-default">Use my home address</a>
+
+			<div class="row" id="fontStyle">where are you?</div>
+
+			<!-- USE HOME ADDRESS -->
+			<div class="row" id="buttonStyle">
+				<a id="home-address" class="button">use my home address</a>
 			</div>
-			<!-- THIS WILL ACCESS THE USER'S CURRENT LOCATION -->
-			<div class="row">
-				<a id="current-address" class="btn btn-default">Use my current location</a>
-				<br>(Location Accuracy may vary)
+
+			<!-- USE CURRENT LOCATION -->
+			<div class="row" id="buttonStyle">
+				<a id="current-address" class="button">use my current location</a>
+			</div>
+
+			<!-- USE NEW LOCATION -->
+			<div id="buttonStyle">
+				<a id="custom-address" class="button">use a new location</a>
 			</div>
 			<div class="row">
-				Custom Location<br>
-				<input placeholder="Enter an address" id="custom-input" type="text" />
-				<br>
-				<br>
-				<a id="custom-address" class="btn btn-default">Use this location</a>
+				<input placeholder="enter an address" id="custom-input" type="text" />
 			</div>
+
+		<!-- CLOSE THE CONTAINER -->
 		</div>
 		
+		<!-- SCRIPTS -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbnqdrc-v_3ZxMG8fQS_53DnUUHUOSquc&libraries=places"></script>
