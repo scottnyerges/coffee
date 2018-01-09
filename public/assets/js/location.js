@@ -2,9 +2,11 @@ $(document).ready(function() {
 	var geocoder = new google.maps.Geocoder();
 
 	$(document).on("click", "#home-address", choseHomeAddress);
-	$(document).on("click", "#change-home", choseChangeHome);
 	$(document).on("click", "#current-address", choseCurrentLocation);
 	$(document).on("click", "#custom-address", choseCustom);
+	$(document).on("click","#update-address",toggle);
+	$(document).on("click","button",updateAddress);
+
 
 
 
@@ -13,23 +15,19 @@ $(document).ready(function() {
 	var index = url.split("location/")[1];
 	console.log("index is " + index);
 
+	function toggle(){
+		$("#message-modal").modal("toggle");
+	}
+
+	function updateAddress(){
+		var newHomeAddress = $("#update-input").val().trim();
+		updateHomeLocation(newHomeAddress);
+	}
+
 	function choseHomeAddress() {
 		$.get("../api/users/" + index, function(data) {
 			updateActiveLocation(data.homeAddress);
 		})
-	}
-
-	function choseChangeHome() {
-		var newHome = $("#new-home").val().trim();
-		var data = { id: index, homeAddress: newHome };
-		$.ajax({
-			method: "PUT",
-			url: "/api/users",
-			data: data
-		})
-		.done(function() {
-			updateActiveLocation(newHome);
-		});
 	}
 
 	function choseCurrentLocation() {
@@ -77,6 +75,18 @@ $(document).ready(function() {
 		})
 		.done(function() {
 			window.location.href = "/results/" + index;
+		});
+	}
+	function updateHomeLocation(loc) {
+		var data = { id: index, homeAddress: loc };
+		console.log(data);
+		$.ajax({
+			method: "PUT",
+			url: "/api/users",
+			data: data
+		})
+		.done(function() {
+			updateActiveLocation(loc);
 		});
 	}
 })
