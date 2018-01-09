@@ -23,17 +23,17 @@ $(document).ready(function() {
 			}
 
 			if (!usernameInput || !passwordInput) {
-				$("#error-text").text("Please fill in all fields");
+				$("#error-text").text("please fill in all fields");
 				$("#message-modal").modal("toggle");
 				return;
 			}
 			else if (currentUsernames.indexOf(usernameInput) == -1) {
-				$("#error-text").text("Your Username does not exist.  Please try again.");
+				$("#error-text").text("hmm... that name doesn't exist. try again.");
 				$("#message-modal").modal("toggle");
 				return;
 			}
 			else if (passwordInput != currentPasswords[currentUsernames.indexOf(usernameInput)]) {
-				$("#error-text").text("Your Password does not match.  Please try again");
+				$("#error-text").text("hmm... wrong password. try again.");
 				$("#message-modal").modal("toggle");
 				return;
 			}
