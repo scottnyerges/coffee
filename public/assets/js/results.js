@@ -26,6 +26,7 @@ $(document).ready(function() {
 	var userLocation;
 	var centerLocation;
 	var k = 0;
+	var service;
 
 	// Other stuff
 	var groupAddresses = [];
@@ -34,6 +35,7 @@ $(document).ready(function() {
 	var url = window.location.href;
 	var index = url.split("results/")[1];
 	var didFirebaseLoadTheMapOnStartup = false;
+	var firstSearchDone;
 
 
 	// ----- FUNCTIONS/API requests
@@ -47,6 +49,11 @@ $(document).ready(function() {
 				userLocation = results[0].geometry.location;
 			}
 		})
+
+		// -- Firebase listening for new users
+		groupRef.on("value", function(snapshot) {
+			displayResults();
+		});
 
 		// Add them to list of users on Firebase
 		playerRef = database.ref("/group/" + index);
@@ -70,13 +77,6 @@ $(document).ready(function() {
 			idNum: 0
 		});
 	})
-
-	// -- Firebase listening for new users
-	groupRef.on("value", function(snapshot) {
-		didFirebaseLoadTheMapOnStartup = true;
-		console.log("Firebase noticed the group changed");
-		displayResults();
-	});
 
 	// -- Prep to display results on screen
 	function displayResults() {
@@ -124,31 +124,43 @@ $(document).ready(function() {
 
 		map = new google.maps.Map(document.getElementById('map'), {
 			center: centerLocation,
-			zoom: 17
+			zoom: 15
 		});
 
 		createNormalMarkers(userLocation);
 
-		var service = new google.maps.places.PlacesService(map);
-		service.nearbySearch({
-			location: centerLocation,
-			radius: 500,
-			type: ['cafe']
-		}, callback);
-		service.nearbySearch({
-			location: centerLocation,
-			radius: 500,
-			type: ['bar']
-		}, callback);
+		service = new google.maps.places.PlacesService(map);
+		firstSearchDone = false;
+		console.log("going from initmap to findPlaces");
+		findPlaces("cafe");
 
 		directionsDisplay.setMap(map);
+	}
+
+	function findPlaces(type) {
+		console.log("we in boys, looking for " + type);
+		service.nearbySearch({
+			location: centerLocation,
+			radius: 500,
+			type: [type]
+		}, callback);
 	}
 
 	// -- This makes a Lettered Marker for each coffee shop thing
 	function callback(results, status){
 		if (status === google.maps.places.PlacesServiceStatus.OK) {
-			for (var i=0; i < 7; i++) {
-				createLetterMarkers(results[i]);
+			for (var i=0; i < 7 && i < results.length; i++) {
+				console.log("in for loop");
+				console.log(!firstSearchDone);
+				console.log(firstSearchDone && results[i].types.indexOf("cafe") != -1);
+				if ((!firstSearchDone) || (firstSearchDone && results[i].types.indexOf("cafe") != -1)) {
+					createLetterMarkers(results[i]);
+				}
+			}
+			if (!firstSearchDone) {
+				console.log("going in again");
+				firstSearchDone = true;
+				findPlaces("bar");
 			}
 		}
 	}
@@ -217,6 +229,7 @@ $(document).ready(function() {
 
 	// -- Logging the user off
 	function goOffline(event) {
+		console.log(event);
 		event.preventDefault();
 
 		var chatDisconnect = database.ref("/chat/" + Date.now());
@@ -272,8 +285,4 @@ $(document).ready(function() {
 	});
 
 	$(document).on("click", "#logoff", goOffline);
-
-	if (!didFirebaseLoadTheMapOnStartup) {
-		displayResults();
-	}
 })
