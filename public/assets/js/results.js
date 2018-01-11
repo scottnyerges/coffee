@@ -40,17 +40,16 @@ $(document).ready(function() {
 
 	// ----- FUNCTIONS/API requests
 	// -- GET user info from database and add to list of active locations
-	$.get("../api/users/" + index, function(data) {
+	$.get("../api/thisUser", function(data) {
 		username = data.username;
 		userAddress = data.activeLocation;
-		console.log(username + "'s address is " + userAddress);
 		geocoder.geocode({ "address": userAddress}, function(results, status) {
 			if (status == "OK") {
 				userLocation = results[0].geometry.location;
 			}
 		})
 
-		// -- Firebase listening for new users
+		// Firebase listening for new users
 		groupRef.on("value", function(snapshot) {
 			displayResults();
 		});
@@ -64,7 +63,6 @@ $(document).ready(function() {
 		// Load chat box 
 		chatData.orderByChild("time").on("child_added", function(snapshot) {
 			$("#chat-messages").append("<p class=player" + snapshot.val().idNum + "><span>" + snapshot.val().name + "</span>: " + snapshot.val().message + "</p>");
-
 			$("#chat-messages").scrollTop($("#chat-messages")[0].scrollHeight);
 		});
 
@@ -80,7 +78,6 @@ $(document).ready(function() {
 
 	// -- Prep to display results on screen
 	function displayResults() {
-		console.log("displayResults");
 		// GET list of online users and their active locations
 		$.get("../api/users/online", function(data) {
 			var onlineUsers = "";
@@ -91,6 +88,8 @@ $(document).ready(function() {
 				onlineUsers += "<br>";
 			}
 			$("#users-online").html(onlineUsers);
+
+			// Resetting these variables so addressToLatLng can be ran recursively
 			k = 0;
 			bound = new google.maps.LatLngBounds();
 			addressToLatLng();
@@ -99,7 +98,6 @@ $(document).ready(function() {
 
 	// -- Geocode addresses into LatLng and find center
 	function addressToLatLng() {
-		console.log("addressToLatLng");
 		geocoder.geocode({ "address": groupAddresses[k]}, function(results, status) {
 			if (status == "OK") {
 				bound.extend(results[0].geometry.location);
@@ -109,7 +107,6 @@ $(document).ready(function() {
 					addressToLatLng();
 				}
 				else {
-					console.log("addressToLatLng found " + k + " addresses");
 					centerLocation = bound.getCenter();
 					initMap();
 				}
@@ -119,7 +116,6 @@ $(document).ready(function() {
 
 	// -- Update the map
 	function initMap() {
-		console.log("initMap");
 		directionsDisplay = new google.maps.DirectionsRenderer();
 
 		map = new google.maps.Map(document.getElementById('map'), {
@@ -131,14 +127,12 @@ $(document).ready(function() {
 
 		service = new google.maps.places.PlacesService(map);
 		firstSearchDone = false;
-		console.log("going from initmap to findPlaces");
 		findPlaces("cafe");
 
 		directionsDisplay.setMap(map);
 	}
 
 	function findPlaces(type) {
-		console.log("we in boys, looking for " + type);
 		service.nearbySearch({
 			location: centerLocation,
 			radius: 500,
@@ -149,16 +143,14 @@ $(document).ready(function() {
 	// -- This makes a Lettered Marker for each coffee shop thing
 	function callback(results, status){
 		if (status === google.maps.places.PlacesServiceStatus.OK) {
-			for (var i=0; i < 7 && i < results.length; i++) {
-				console.log("in for loop");
-				console.log(!firstSearchDone);
-				console.log(firstSearchDone && results[i].types.indexOf("cafe") != -1);
-				if ((!firstSearchDone) || (firstSearchDone && results[i].types.indexOf("cafe") != -1)) {
+			var j = 0;
+			for (var i=0; j < 6 && i < results.length; i++) {
+				if ((!firstSearchDone) || (firstSearchDone && results[i].types.indexOf("cafe") == -1)) {
+					j++;
 					createLetterMarkers(results[i]);
 				}
 			}
 			if (!firstSearchDone) {
-				console.log("going in again");
 				firstSearchDone = true;
 				findPlaces("bar");
 			}
@@ -173,9 +165,8 @@ $(document).ready(function() {
 			position: place.geometry.location
 		});
 
-		// -- On-click listener made for each marker
+		//  On-click listener made for each marker
 		google.maps.event.addListener(marker, 'click', function() {
-			console.log(place);
 			// Figuring out Store Hours
 			if (place.opening_hours) {
 				if (place.opening_hours.open_now) {
@@ -210,7 +201,7 @@ $(document).ready(function() {
 				travelMode: 'DRIVING'
 			};
 
-			// --- Get directions from Google
+			// Get directions from Google
 			directionsService.route(request, function(result, status) {
 				if (status == "OK") {
 					directionsDisplay.setDirections(result);
@@ -227,15 +218,15 @@ $(document).ready(function() {
 		});
 	}
 
+
+
 	// -- Logging the user off
 	function goOffline(event) {
-		console.log(event);
 		event.preventDefault();
-
-		var chatDisconnect = database.ref("/chat/" + Date.now());
 
 	    playerRef.onDisconnect().remove();
 
+		var chatDisconnect = database.ref("/chat/" + Date.now());
 	    chatDisconnect.onDisconnect().set({
 	      name: username,
 	      time: firebase.database.ServerValue.TIMESTAMP,
@@ -243,46 +234,41 @@ $(document).ready(function() {
 	      idNum: 0
 	    });
 
-		var data = { id: index, online: false, activeLocation: null };
 		$.ajax({
 			method: "PUT",
-			url: "/api/users",
-			data: data
+			url: "/api/users/logout"
 		})
 		.done(function() {
-			window.location.href = "/welcome";
+			window.location.href = "/logout";
 		});
 	}
+
+
 
 	// -- The next two listeners are for if the user clicks the Chat button or presses Enter while typing
 	$("#chat-send").click(function() {
 		if ($("#chat-input").val() !== "") {
-			var message = $("#chat-input").val();
-
-			chatData.push({
-				name: username,
-				message: message,
-				time: firebase.database.ServerValue.TIMESTAMP,
-				idNum: 1
-			});
-
-			$("#chat-input").val("");
+			postToChat()
 		}
 	});
 	$("#chat-input").keypress(function(e) {
 		if (e.keyCode === 13 && $("#chat-input").val() !== "") {
-			var message = $("#chat-input").val();
-
-			chatData.push({
-				name: username,
-				message: message,
-				time: firebase.database.ServerValue.TIMESTAMP,
-				idNum: 1
-			});
-
-			$("#chat-input").val("");
+			postToChat()
 		}
 	});
+
+	function postToChat() {
+		var message = $("#chat-input").val();
+
+		chatData.push({
+			name: username,
+			message: message,
+			time: firebase.database.ServerValue.TIMESTAMP,
+			idNum: 1
+		});
+
+		$("#chat-input").val("");
+	}
 
 	$(document).on("click", "#logoff", goOffline);
 })

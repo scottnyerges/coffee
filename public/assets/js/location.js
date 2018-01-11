@@ -2,18 +2,15 @@ $(document).ready(function() {
 	var geocoder = new google.maps.Geocoder();
 
 	$(document).on("click", "#home-address", choseHomeAddress);
-	$(document).on("click", "#current-address", choseCurrentLocation);
-	$(document).on("click", "#custom-address", toggleCustom);
 	$(document).on("click","#update-address",toggleUpdate);
 	$(document).on("click","#update-submit",updateAddress);
+	$(document).on("click", "#current-address", choseCurrentLocation);
+	$(document).on("click", "#custom-address", toggleCustom);
 	$(document).on("click","#custom-submit",customAddress);
 
 
-	var url = window.location.href;
-	console.log(url);
-	var index = url.split("location/")[1];
-	console.log("index is " + index);
 
+	// -- Display inputs for Updating homeAddress or using Custom Address
 	function toggleUpdate(){
 		$("#update-modal").modal("toggle");
 	}
@@ -22,20 +19,17 @@ $(document).ready(function() {
 		$("#custom-modal").modal("toggle");
 	}
 
+
+
+	// -- Functions for the 4 options
+	function choseHomeAddress() {
+		var url = "/api/users/home";
+		setActiveLocation(url, {});
+	}
+
 	function updateAddress(){
 		var newHomeAddress = $("#update-input").val().trim();
 		updateHomeLocation(newHomeAddress);
-	}
-
-	function customAddress(){
-		var userCustomAddress = $("#custom-input").val().trim();
-		updateActiveLocation(userCustomAddress);
-	}
-
-	function choseHomeAddress() {
-		$.get("../api/users/" + index, function(data) {
-			updateActiveLocation(data.homeAddress);
-		})
 	}
 
 	function choseCurrentLocation() {
@@ -49,7 +43,9 @@ $(document).ready(function() {
 				geocoder.geocode({'location': latlng}, function(results, status) {
 					if (status === 'OK') {
 						if (results[0]) {
-							updateActiveLocation(results[0].formatted_address);
+							var url = "/api/users/currentOrCustom";
+							var data = { activeLocation: results[0].formatted_address }
+							setActiveLocation(url, data);
 						} else {
 							console.log('No results found');
 						}
@@ -67,28 +63,36 @@ $(document).ready(function() {
 		}
 	}
 
-	function updateActiveLocation(loc) {
-		var data = { id: index, online: true, activeLocation: loc };
-		console.log(data);
-		$.ajax({
-			method: "PUT",
-			url: "/api/users",
-			data: data
-		})
-		.done(function() {
-			window.location.href = "/results/" + index;
-		});
+	function customAddress(){
+		var customInput = $("#custom-input").val().trim();
+		var url = "/api/users/currentOrCustom";
+		var data = { activeLocation: customInput }
+		setActiveLocation(url, data);
 	}
+
+
+
+	// -- PUT requests
 	function updateHomeLocation(loc) {
-		var data = { id: index, homeAddress: loc };
-		console.log(data);
+		var data = { homeAddress: loc };
 		$.ajax({
 			method: "PUT",
-			url: "/api/users",
+			url: "/api/users/update",
 			data: data
 		})
-		.done(function() {
-			updateActiveLocation(loc);
-		});
+		.done(gotoResults);
+	}
+
+	function setActiveLocation(url, data) {
+		$.ajax({
+			method: "PUT",
+			url: url,
+			data: data
+		})
+		.done(gotoResults);
+	}
+
+	function gotoResults() {
+		window.location.href = "/results";
 	}
 })

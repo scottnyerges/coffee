@@ -1,9 +1,57 @@
 var db = require("../models");
 
 module.exports = function(app) {
+	// -- POST resquest in register.js to add new users
+	app.post("/api/users", function(req, res) {
+		db.Users.findOne({ where: { username: req.username } }).then(function(user) {
+			if(!user) {
+				db.Users.create(req.body).then(function(dbPost) {
+					res.json(dbPost);
+				});
+			}
+			else {
+				res.redirect("/register");
+			}
+		});
+	});
 
-	app.get("/api/users", function(req, res) {
-		db.Users.findAll({}).then(function(dbPost) {
+
+
+	// -- PUT requests for location.js to update Active Location
+	app.put("/api/users/home", function(req, res) {
+		db.Users.update(
+			{ online: 1, activeLocation: req.user.homeAddress },
+			{ where: { id: req.user.id } }
+		).then(function(dbPost) {
+			res.json(dbPost);
+		});
+	});
+
+	app.put("/api/users/update", function(req, res) {
+		db.Users.update(
+			{ online: 1, homeAddress: req.body.homeAddress, activeLocation: req.body.homeAddress },
+			{ where: { id: req.user.id } }
+		).then(function(dbPost) {
+			res.json(dbPost);
+		});
+	});
+
+	app.put("/api/users/currentOrCustom", function(req, res) {
+		db.Users.update(
+			{ online: 1, activeLocation: req.body.activeLocation },
+			{ where: { id: req.user.id } }
+		).then(function(dbPost) {
+			res.json(dbPost);
+		});
+	});
+
+
+
+	// -- API routes for results.js to display results
+	app.get("/api/thisUser", function(req, res) {
+		db.Users.findOne(
+			{ where: { id: req.user.id } }
+		).then(function(dbPost) {
 			res.json(dbPost);
 		});
 	});
@@ -18,33 +66,12 @@ module.exports = function(app) {
 		});
 	});
 
-	app.get("/api/users/:id", function(req, res) {
-		db.Users.findOne({
-			where: {
-				id: req.params.id
-			}
-		}).then(function(dbPost) {
-			res.json(dbPost);
-		});
-	});
-
-	app.post("/api/users", function(req, res) {
-		db.Users.create(req.body).then(function(dbPost) {
-			res.json(dbPost);
-		});
-	});
-
-	// PUT route for updating posts
-	app.put("/api/users", function(req, res) {
+	app.put("/api/users/logout", function(req, res) {
 		db.Users.update(
-			req.body,
-			{
-				where: {
-					id: req.body.id
-				}
-			}
+			{ online: 0, activeLocation: null },
+			{ where: { id: req.user.id } }
 		).then(function(dbPost) {
-			res.json(dbPost);
+			res.json("dbPost");
 		});
 	});
 };

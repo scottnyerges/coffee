@@ -23,6 +23,7 @@
     "fs": "0.0.1-security",
     "mysql2": "^1.5.1",
     "node": "9.3.0",
+    "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "sequelize": "^4.28.7",
     "sequelize-cli": "^3.2.0"

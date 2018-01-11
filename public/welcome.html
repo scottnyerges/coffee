@@ -26,13 +26,13 @@
 
 			<!-- THIS IS A SUBMISSION FORM FOR REGISTERED USERS TO LOGIN -->
 			<div class="row">
-				<form id="myForm">
-					name<br>
-					<input type="text" id="userName"><br>
+				<form id="myForm" action="/login" method="post">
+					username<br>
+					<input type="text" id="userName" name="username"><br>
 					password<br>
-					<input type="text" id="userPass"><br>
+					<input type="text" id="userPass" name="password"><br>
 					<br>
-					<button class="button" type="submit"><div id="buttonStyle">login</div></button>
+					<button class="button" type="submit" value="Log In"><div id="buttonStyle">login</div></button>
 				</form>
 			</div>
 
