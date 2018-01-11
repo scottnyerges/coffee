@@ -220,31 +220,6 @@ $(document).ready(function() {
 
 
 
-	// -- Logging the user off
-	function goOffline(event) {
-		event.preventDefault();
-
-	    playerRef.onDisconnect().remove();
-
-		var chatDisconnect = database.ref("/chat/" + Date.now());
-	    chatDisconnect.onDisconnect().set({
-	      name: username,
-	      time: firebase.database.ServerValue.TIMESTAMP,
-	      message: "has disconnected.",
-	      idNum: 0
-	    });
-
-		$.ajax({
-			method: "PUT",
-			url: "/api/users/logout"
-		})
-		.done(function() {
-			window.location.href = "/logout";
-		});
-	}
-
-
-
 	// -- The next two listeners are for if the user clicks the Chat button or presses Enter while typing
 	$("#chat-send").click(function() {
 		if ($("#chat-input").val() !== "") {
@@ -269,6 +244,33 @@ $(document).ready(function() {
 
 		$("#chat-input").val("");
 	}
+
+
+
+	// -- Logging the user off
+	function goOffline(event) {
+		event.preventDefault();
+
+	    playerRef.onDisconnect().remove();
+
+		var chatDisconnect = database.ref("/chat/" + Date.now());
+	    chatDisconnect.onDisconnect().set({
+	      name: username,
+	      time: firebase.database.ServerValue.TIMESTAMP,
+	      message: "has disconnected.",
+	      idNum: 0
+	    });
+
+		$.ajax({
+			method: "PUT",
+			url: "/api/users/logout"
+		})
+		.done(function() {
+			window.location.href = "/logout";
+		});
+	}
+
+	$(window).on("beforeunload", goOffline);
 
 	$(document).on("click", "#logoff", goOffline);
 })
