@@ -7,9 +7,9 @@
   padding: 20px;
   height: 95%;
   width: 95%;
-  border-width: 5px;
+  border-width: 3px;
   border-style: solid;
-  border-color: #4885ed;
+  border-color: #003366;
   border-radius: 25px;
   position: absolute;
   top: 0;
@@ -22,12 +22,14 @@
 .container2{
   display: grid;
   margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
   padding: 10px;
   height: 95%;
   width: 95%;
-  border-width: 5px;
+  border-width: 3px;
   border-style: solid;
-  border-color: #4885ed;
+  border-color: #003366;
   border-radius: 25px;
   position: relative;
   top: 0;
@@ -39,23 +41,19 @@
 
 .row {
     text-align: center;
-    font-family: verdana;
-    font-size: 22px;
-
 }
 
 /*  SECTIONS  */
 
 .section {
   clear: both;
-  padding: 10px;
 }
 
 #sectionStyle {
   padding: 10px;
   border-width: 0.5px;
   border-style: solid;
-  border-color: gray;
+  border-color: lightgray;
   border-radius: 15px;
   margin-bottom: 10px;
 }
@@ -124,33 +122,26 @@ form {
 /* BUTTON STYLING */
 
 button {
-    background: #4885ed;
+    background: #0060C0;
     text-decoration: none;
     color: white;
-    height: 60px;
-    width: 275px;
+    height: 40px;
+    width: 260px;
     margin: 4px 2px;
     border-radius: 25px;
-    padding: 10px 20px;
+    padding: 5px 20px;
     transition: all 0.3s ease 0s;
     text-align: center;
-    font-family: 'Roboto Condensed', sans-serif;
-    font-size: 22px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 17px;
 }
 button:hover {
-  box-shadow: inset 0 0 0 5px #3071A9;
+  box-shadow: inset 0 0 0 5px #198CFF;
 }
 
-
-#buttonStyle, #home-address, #current-address, #custom-address, #logoff, #custom-submit, #custom-input, {
-   text-align: center;
-    text-decoration: none;
-    font-family: 'Roboto Condensed', sans-serif;
-    font-size: 18px;
-}
 
 .chatbutton {
-  background-color: #4885ed;
+  background-color: #0060C0;
     border: none;
     color: white;
     height: 30px;
@@ -163,14 +154,14 @@ button:hover {
     cursor: pointer;
     border-radius: 25px;
     padding: 5px 10px;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 /* STYLING FOR LOGO */
 
 #imgStyle {
   text-align: center;
-  max-width: 300px; 
+  max-width: 290px; 
 }
 
 #imgStyle2 {
@@ -181,33 +172,40 @@ button:hover {
 #logoStyle {
   font-family: 'Alfa Slab One', cursive;
   font-size: 36px;
-  color: #4885ed;
+  color: #0060C0;
   opacity: 0.95;
 }
 
 /* FONT STYLES */
 
 #fontStyle {
-  font-family: 'Alfa Slab One', cursive;
-  font-size: 40px;
-  color: #4885ed;
-  opacity: 0.95;
+font-family: 'Alfa Slab One', cursive;
+margin-bottom: -30px;
+font-size: 82px;
+color: #0060C0;
+}
+
+#fontStyle1 {
+font-family: 'Alfa Slab One', cursive;
+margin-top: 0px;
+font-size: 55px;
+color: #0060C0;
 }
 
 #fontStyle2 {
-  font-family: 'Alfa Slab One', cursive;
-  font-size: 20px;
-  color: #4885ed;
-  opacity: 0.95;
+font-family: 'Alfa Slab One', cursive;
+font-size: 44px;
+margin-bottom: 10px;
+color: #198CFF;
 }
 
 #fontStyle3 {
   font-family: 'Alfa Slab One', cursive;
-  font-size: 16px;
+  font-size: 22px;
   text-align: center;
-  color: #4885ed;
+  color: #198CFF;
   opacity: 0.95;
-  margin-bottom: 5px;
+
 }
 
 /* ANIMATION */
@@ -235,6 +233,10 @@ button:hover {
     opacity: 1;
   }
 }
+
+
+
+
 
 .first-fade {
   opacity: 0;
@@ -270,8 +272,9 @@ button:hover {
   overflow: auto;
   padding: 5px;
   background-color: #ffffff;
-  font-family: verdana;
+font-family: 'Roboto', sans-serif;
   font-size: 14px;
+  color: #003366;
   border-radius: 15px;
 }
 
@@ -291,7 +294,7 @@ button:hover {
 #reviewsBox {
   padding: 5px;
   background-color: #ffffff;
-  font-family: verdana;
+
   font-size: 14px;
 /*  height: 75px;*/
 
@@ -302,7 +305,7 @@ button:hover {
 #users-online {
   padding: 5px;
   background-color: #ffffff;
-  font-family: verdana;
+font-family: 'Roboto', sans-serif;
   font-size: 14px;
   border-radius: 15px;
 }
@@ -320,14 +323,20 @@ button:hover {
 /* INPUT, FORM STYLE 
 */
 #myForm, #custom-input, #new-user-form {
-  font-family: verdana;
+font-family: 'Alfa Slab One', cursive;
+color: #0060C0;
   text-align: center;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 #userName, #userPass, #newUserName, #newUserPass, #newUserAddress, #custom-input{
+  
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: #003366;
   border-radius: 15px;
   border-width: 0.5px;
+  margin-top: 10px;
   margin-bottom: 20px;
   padding: 5px;
 }
