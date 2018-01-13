@@ -26,7 +26,8 @@ module.exports = function(passport, app) {
   // -- Called in Welcome.html
   app.post('/login',
     passport.authenticate('local', { successRedirect: '/location',
-                                     failureRedirect: '/register' })
+                                     failureRedirect: '/register',
+                                     failureFlash: true })
   );
 
 

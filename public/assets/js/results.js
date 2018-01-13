@@ -36,6 +36,7 @@ $(document).ready(function() {
 	var index = url.split("results/")[1];
 	var didFirebaseLoadTheMapOnStartup = false;
 	var firstSearchDone;
+	var didUserPressLogOut = false;
 
 
 	// ----- FUNCTIONS/API requests
@@ -51,6 +52,7 @@ $(document).ready(function() {
 
 		// Firebase listening for new users
 		groupRef.on("value", function(snapshot) {
+			console.log("firebase noticed a new user");
 			displayResults();
 		});
 
@@ -78,8 +80,10 @@ $(document).ready(function() {
 
 	// -- Prep to display results on screen
 	function displayResults() {
+		console.log("displayResults");
 		// GET list of online users and their active locations
 		$.get("../api/users/online", function(data) {
+			console.log(JSON.stringify(data));
 			var onlineUsers = "";
 			groupAddresses = [];
 			for(var i = 0; i < data.length; i++) {
@@ -88,6 +92,8 @@ $(document).ready(function() {
 				onlineUsers += "<br>";
 			}
 			$("#users-online").html(onlineUsers);
+
+			console.log(groupAddresses);
 
 			// Resetting these variables so addressToLatLng can be ran recursively
 			k = 0;
@@ -98,6 +104,9 @@ $(document).ready(function() {
 
 	// -- Geocode addresses into LatLng and find center
 	function addressToLatLng() {
+		console.log("addressToLatLng");
+		console.log(groupAddresses);
+		console.log(groupAddresses[k]);
 		geocoder.geocode({ "address": groupAddresses[k]}, function(results, status) {
 			if (status == "OK") {
 				bound.extend(results[0].geometry.location);
@@ -116,6 +125,7 @@ $(document).ready(function() {
 
 	// -- Update the map
 	function initMap() {
+		console.log("initMap");
 		directionsDisplay = new google.maps.DirectionsRenderer();
 
 		map = new google.maps.Map(document.getElementById('map'), {
@@ -142,6 +152,7 @@ $(document).ready(function() {
 
 	// -- This makes a Lettered Marker for each coffee shop thing
 	function callback(results, status){
+		console.log("callback (after finding Places");
 		if (status === google.maps.places.PlacesServiceStatus.OK) {
 			var j = 0;
 			for (var i=0; j < 6 && i < results.length; i++) {
@@ -159,6 +170,7 @@ $(document).ready(function() {
 
 	// -- Function that actually makes the Lettered Markers
 	function createLetterMarkers(place){
+		console.log("createLetterMarkers");
 		var marker = new google.maps.Marker({
 			map: map,
 			label: labels[labelIndex++ % labels.length],
@@ -188,11 +200,28 @@ $(document).ready(function() {
 				placeRating = "Has not been reviewed";
 			}
 
+
+
+			// var userAddressWithPlusSigns
+
+			var url = "https://www.google.com/maps/dir/?api=1";
+			var origin = "&origin=" + spacesToPlus(userAddress);
+			var destination = "&destination=" + spacesToPlus(place.vicinity);
+			var newUrl = url + origin + destination;
+
+			console.log(newUrl);
+
+
+
+
+
+
 			// Update page with clicked location's info
 			$("#loc-name").text("Name: " + place.name);
             $("#loc-address").text("Address: " + place.vicinity);
             $("#loc-rating").text("Rating: " + placeRating);
             $("#loc-open").text("Open Now: " + placeOpenNow);
+            $("#loc-directions").attr("href", newUrl);
 
 			// Defines our Directions request
 			var request = {
@@ -266,11 +295,32 @@ $(document).ready(function() {
 			url: "/api/users/logout"
 		})
 		.done(function() {
-			window.location.href = "/logout";
+			if(didUserPressLogOut) {
+				window.location.href = "/logout";
+			}
 		});
 	}
 
+
+
+	// -- Convert Spaces to Pluses for GMaps
+	var spacesToPlus = function(text) {
+		var newText = "";
+		for (var i = 0; i < text.length; i++) {
+			if (text[i] == " ") {
+				newText += "+";
+			}
+			else {
+				newText += text[i];
+			}
+		}
+		return newText;
+	};
+
 	$(window).on("beforeunload", goOffline);
 
-	$(document).on("click", "#logoff", goOffline);
+	$(document).on("click", "#logoff", function(event) {
+		didUserPressLogOut = true;
+		goOffline(event);
+	});
 })

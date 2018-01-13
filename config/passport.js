@@ -17,7 +17,7 @@ module.exports = function(passport) {
     function(username, password, done) {
       db.Users.findOne({ where: { username: username } }).then(function(user) {
         if (!user) {
-          done(null, false, { message: 'Incorrect username.' });
+          done(null, false, { message: "Username doesn't exist" });
         }
         else {
           db.Users.validatePassword(password, user.password, done, user); 

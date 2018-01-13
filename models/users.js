@@ -4,7 +4,6 @@ module.exports = function(sequelize, DataTypes) {
   var Users = sequelize.define("Users", {
     username: {
       type: DataTypes.STRING,
-      unique: true,
       allowNull: false,
       validate: {
         len: [1]
@@ -34,10 +33,13 @@ module.exports = function(sequelize, DataTypes) {
   Users.validatePassword = function(password, passwd, done, user) {
     bcrypt.compare(password, passwd, function(err, isMatch) {
       if (err) {
-        done(err, false);
+        done(err, false, { message: 'Server error' });
       }
       else if (isMatch) {
-        done(null, user);
+        done(null, user, { message: 'Everything Worked' });
+      }
+      else if (!isMatch) {
+        done(null, user, { message: "Pretty sure the passwords didn't match" });
       }
       else {
         done(null, false);

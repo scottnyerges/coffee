@@ -3,12 +3,14 @@ var bodyParser = require("body-parser");
 var passport = require("passport");
 var session = require("express-session");
 var passportConfig = require("./config/passport.js")(passport);
+var flash = require("connect-flash");
 
 var app = express();
 var PORT = process.env.PORT || 3010;
 
 var db = require("./models");
 
+app.use(flash());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.text());
