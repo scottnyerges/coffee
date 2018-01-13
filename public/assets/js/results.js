@@ -73,7 +73,7 @@ $(document).ready(function() {
 		chatConnect.set({
 			name: username,
 			time: firebase.database.ServerValue.TIMESTAMP,
-			message: "is now Online!",
+			message: "is now online!",
 			idNum: 0
 		});
 	})
