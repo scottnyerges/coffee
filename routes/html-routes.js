@@ -22,13 +22,26 @@ module.exports = function(passport, app) {
     res.sendFile(path.join(__dirname, "../public/welcome.html"));
   });
 
+  app.get("/error", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/errorPage.html"));
+  });
+
 
   // -- Called in Welcome.html
   app.post('/login',
-    passport.authenticate('local', { successRedirect: '/location',
-                                     failureRedirect: '/register',
-                                     failureFlash: true })
+    passport.authenticate('local', { 
+                                     successRedirect: '/location',
+                                     failureRedirect: '/error'})
   );
+
+  app.get('/login', function(req, res) {
+    console.log( req.flash('loginMessage') );
+    console.log( req.flash('loginMessage')[0] );
+    res.render('login', {
+        title: "Connection",
+        message: req.flash('loginMessage')[0]
+    });
+});
 
 
   app.get("/logout", destroySession);
@@ -40,7 +53,7 @@ module.exports = function(passport, app) {
       next();
     }
     else {
-      next(new Error(401));
+      res.redirect("/error");
     }
   }
 

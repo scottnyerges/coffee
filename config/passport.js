@@ -15,9 +15,10 @@ module.exports = function(passport) {
 
   passport.use(new LocalStrategy(
     function(username, password, done) {
+      console.log("done: " + done);
       db.Users.findOne({ where: { username: username } }).then(function(user) {
         if (!user) {
-          done(null, false, { message: "Username doesn't exist" });
+          done(null, false);
         }
         else {
           db.Users.validatePassword(password, user.password, done, user); 

@@ -29,6 +29,7 @@ $(document).ready(function() {
 	var service;
 
 	// Other stuff
+	$("#reviewsBox").hide();
 	var groupAddresses = [];
 	var userAddress;
 	var username;
@@ -200,21 +201,10 @@ $(document).ready(function() {
 				placeRating = "Has not been reviewed";
 			}
 
-
-
-			// var userAddressWithPlusSigns
-
 			var url = "https://www.google.com/maps/dir/?api=1";
 			var origin = "&origin=" + spacesToPlus(userAddress);
 			var destination = "&destination=" + spacesToPlus(place.vicinity);
 			var newUrl = url + origin + destination;
-
-			console.log(newUrl);
-
-
-
-
-
 
 			// Update page with clicked location's info
 			$("#loc-name").text("Name: " + place.name);
@@ -222,6 +212,7 @@ $(document).ready(function() {
             $("#loc-rating").text("Rating: " + placeRating);
             $("#loc-open").text("Open Now: " + placeOpenNow);
             $("#loc-directions").attr("href", newUrl);
+            $("#reviewsBox").show();
 
 			// Defines our Directions request
 			var request = {

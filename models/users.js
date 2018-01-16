@@ -33,15 +33,12 @@ module.exports = function(sequelize, DataTypes) {
   Users.validatePassword = function(password, passwd, done, user) {
     bcrypt.compare(password, passwd, function(err, isMatch) {
       if (err) {
-        done(err, false, { message: 'Server error' });
+        done(err, false);
       }
       else if (isMatch) {
-        done(null, user, { message: 'Everything Worked' });
+        done(null, user);
       }
       else if (!isMatch) {
-        done(null, user, { message: "Pretty sure the passwords didn't match" });
-      }
-      else {
         done(null, false);
       }
     })
