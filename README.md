@@ -6,6 +6,8 @@ Coffee Connection is designed and built by [James Vera](https://github.com/jdver
 
 ---
 
+[Slideshow presentation](https://docs.google.com/presentation/d/1lk7pFvNv658puXd0BNKyKreODA295zR_s9n-Jxk5P0M/edit?usp=sharing)
+
 [Video demo (beta version)](https://spark.adobe.com/video/E3bDuNy0Pdthc)
 
 [Evolution of landing page](https://github.com/scottnyerges/coffee/blob/master/landing.psd)
