@@ -4,6 +4,8 @@
 
 Coffee Connection is designed and built by [James Vera](https://github.com/jdvera), [Vincent Huynh](https://github.com/vincentishuynh), and [Scott Nyerges](https://github.com/scottnyerges).
 
+---
+
 [Video demo (beta version)](https://spark.adobe.com/video/E3bDuNy0Pdthc)
 
 [Evolution of landing page](https://github.com/scottnyerges/coffee/blob/master/landing.psd)
