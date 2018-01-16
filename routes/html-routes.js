@@ -34,15 +34,6 @@ module.exports = function(passport, app) {
                                      failureRedirect: '/error'})
   );
 
-  app.get('/login', function(req, res) {
-    console.log( req.flash('loginMessage') );
-    console.log( req.flash('loginMessage')[0] );
-    res.render('login', {
-        title: "Connection",
-        message: req.flash('loginMessage')[0]
-    });
-});
-
 
   app.get("/logout", destroySession);
 
