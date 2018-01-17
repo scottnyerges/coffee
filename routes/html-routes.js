@@ -22,11 +22,16 @@ module.exports = function(passport, app) {
     res.sendFile(path.join(__dirname, "../public/welcome.html"));
   });
 
+  app.get("/error", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/errorPage.html"));
+  });
+
 
   // -- Called in Welcome.html
   app.post('/login',
-    passport.authenticate('local', { successRedirect: '/location',
-                                     failureRedirect: '/register' })
+    passport.authenticate('local', { 
+                                     successRedirect: '/location',
+                                     failureRedirect: '/error'})
   );
 
 
@@ -39,7 +44,7 @@ module.exports = function(passport, app) {
       next();
     }
     else {
-      next(new Error(401));
+      res.redirect("/error");
     }
   }
 

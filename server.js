@@ -27,9 +27,4 @@ db.sequelize.sync({ force: true }).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
-  db.Users.findOne({ where: {username: "admin"}}).then(function (user) {
-  	if (!user) {
-  		db.Users.build({ username: "admin", password: "admin", homeAddress: "7405 Sevilla Dr Austin TX"}).save();
-  	}
-  })
 });

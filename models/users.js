@@ -4,7 +4,6 @@ module.exports = function(sequelize, DataTypes) {
   var Users = sequelize.define("Users", {
     username: {
       type: DataTypes.STRING,
-      unique: true,
       allowNull: false,
       validate: {
         len: [1]
@@ -39,7 +38,7 @@ module.exports = function(sequelize, DataTypes) {
       else if (isMatch) {
         done(null, user);
       }
-      else {
+      else if (!isMatch) {
         done(null, false);
       }
     })

@@ -294,18 +294,15 @@ font-family: 'Roboto', sans-serif;
 #reviewsBox {
   padding: 5px;
   background-color: #ffffff;
-
   font-size: 14px;
 /*  height: 75px;*/
-
   border-radius: 15px;
-
 }
 
 #users-online {
   padding: 5px;
   background-color: #ffffff;
-font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
   border-radius: 15px;
 }
