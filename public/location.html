@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
@@ -8,32 +7,77 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- BOOTSTRAP -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<!-- AJAX -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<!-- CSS -->
-		<link rel="stylesheet" href="./assets/css/style.css" type="text/css"/>
+		<link rel="stylesheet" href="../assets/css/style.css" type="text/css"/>
 		<!-- GOOGLE FONT -->
 		<link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
-		<!-- GOOGLE MAPS THINGY -->
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Abel|Days+One|Merriweather+Sans|Share" rel="stylesheet">
+
 
 	</head>
 	<body>
-			<div class="container">
-			<div class="row"><h1>Where are you?</h1></div>
-			<div class="row">
-			<a href="results.html" class="btn btn-default">Use my home address</a>
-			</div>
-			<div class="row">
-			<a href="results.html" class="btn btn-default">Use my current location</a>
-			</div>
-			<div class="row">
-			one-line form goes here for new location
-			<!-- GET REQUEST FOR LOCATION -->
-			<br>
-			<br>
-			<a href="results.html" class="btn btn-default">Use this location</a>
-			</div>
-	</body>
-	</html>	
+		<!-- ONE CONTAINER TO BIND THEM ALL -->
+		<div class="container">
 
+			<div class="row" id="fontStyle1">where are you?</div>
+
+			<!-- USE HOME ADDRESS -->
+			<div class="row">
+				<a id="home-address"><button>use my home address</button></a>
+			</div>
+
+			<div class="row">
+				<a id="update-address"><button>update my home address</button></a>
+			</div>
+			<!-- THIS WILL ACCESS THE USER'S CURRENT LOCATION -->
+			<div class="row">
+				<a id="current-address"><button>use my current location</button></a>
+<!-- 				<br>(accuracy may vary) -->
+
+			</div>
+			<div class="row">
+				<a id="custom-address"><button>use a custom address</button></a>
+			</div>
+
+		<!-- CLOSE THE CONTAINER -->
+		</div>
+		<div id="update-modal" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h2 class="modal-title">update address</h2>
+						</div>
+						<div class="modal-body">
+							<input placeholder="enter an address" id="update-input" type="text" />
+						</div>
+						<div class="modal-footer">
+							<button type="button" id="update-submit" class="button" data-dismiss="modal">update</button>
+						</div>
+					</div>
+
+				</div>
+		</div>
+		<div id="custom-modal" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h2 class="modal-title">where are you?</h2>
+						</div>
+						<div class="modal-body">
+							<input placeholder="enter an address" id="custom-input" type="text" />
+						</div>
+						<div class="modal-footer">
+							<button type="button" id="custom-submit" class="button" data-dismiss="modal">ok</button>
+						</div>
+					</div>
+
+				</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbnqdrc-v_3ZxMG8fQS_53DnUUHUOSquc&libraries=places"></script>
+		<script defer src="../assets/js/location.js" type="text/javascript"></script>
+	</body>
+</html>

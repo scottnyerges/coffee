@@ -1,32 +1,17 @@
 $(document).ready(function() {
-	var usernameInput = $("#client-username").val().trim();
-	var passwordInput = $("#client-password").val().trim();
-	var addressInput = $("#client-address").val().trim();
 	var currentUsernames = [];
+	var usernameInput;
+	var passwordInput;
+	var addressInput;
 
-	$(document).on("submit", "#new-user", handleNewUser);
-
-	function getUsers() {
-		$.get("api/users", function(data) {
-			for (var i = 0; i < data.length; i++) {
-				currentUsernames.push(data[i].username);
-			}
-		})
-	}
+	$(document).on("submit", "#new-user-form", handleNewUser);
 
 	function handleNewUser(event) {
 		event.preventDefault();
 
-		getUsers();
-
-		if (!usernameInput || !passwordInput || !addressInput) {
-			console.log("tell user to fill in all fields");
-			return;
-		}
-		else if (currentUsernames.indexOf(usernameInput) != -1) {
-			console.log("tell user to choose a new username");
-			return;
-		}
+		usernameInput = $("#newUserName").val().trim();
+		passwordInput = $("#newUserPass").val().trim();
+		addressInput = $("#newUserAddress").val().trim();
 
 		addNewUser({
 			username: usernameInput,
@@ -36,8 +21,8 @@ $(document).ready(function() {
 	}
 
 	function addNewUser(userData) {
-		$.post("/api/users", userData)
+		$.post("/api/users", userData, function(data) {
+			window.location.href = "/welcome";
+    	});
 	}
-
-	// somehow save the user ID of the person
-}
+});
